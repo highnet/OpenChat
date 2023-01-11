@@ -24,11 +24,9 @@ app.get('/', (req: Request, res: Response) =>
     let session = req.session;
     console.log("Session id: ", session.id);
 
+
     let usersA = JSON.parse('{ "username":"admin", "password":"admin"}');
     console.log(usersA.username);
-
-    let usersB = JSON.parse('../lib/users.json');
-    console.log(usersB.username);
 
     if(session.id){
         res.sendFile(path.resolve(__dirname, 'index.html'));
