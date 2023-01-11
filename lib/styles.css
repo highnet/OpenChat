@@ -1,3 +1,10 @@
+:root {
+    --color-primary: #2584ff;
+    /* --color-headings: #1b0760; */
+    /* --color-accent: #ff3400; */
+    /* --color-secondary: #00d9ff; */
+}
+
 .login{
     border: 1px solid gray;
 }
