@@ -1,3 +1,13 @@
+.login{
+    border: 1px solid gray;
+}
+
 .username {
+    font-size: 2rem;
     font-weight: bold;
+}
+
+.password{
+    font-size: 1.5rem;
+    font-weight: lighter;
 }
