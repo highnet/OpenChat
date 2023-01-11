@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #2584ff;
+    --color-primary: #5e17eb;
     /* --color-headings: #1b0760; */
     /* --color-accent: #ff3400; */
     /* --color-secondary: #00d9ff; */
@@ -12,9 +12,11 @@
 .username {
     font-size: 2rem;
     font-weight: bold;
+    color: var(--color-primary);
 }
 
 .password{
     font-size: 1.5rem;
     font-weight: lighter;
+        color: var(--color-primary);
 }

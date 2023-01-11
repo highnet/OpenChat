@@ -3,7 +3,7 @@ import express, { Express, Request, Response } from 'express';
 import path from 'path';
 import session from 'express-session';
 // https://expressjs.com/en/starter/static-files.html
-
+// https://greensock.com/
 let validPasswords: Array<[string, string]> = [
     ["admin", "admin"]
 ];
