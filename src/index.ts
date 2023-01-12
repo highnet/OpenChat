@@ -34,10 +34,7 @@ app.get('/', (req: Request, res: Response) =>
   let session = req.session;
   let validAuth: boolean = false;
   
-  console.log("session ID:", session.id);
-
-  // auths = JSON.parse(fs.readFileSync('auths.json','utf8'));
-
+  
   for(let auth of auths){
     console.log(auth);
     if (session.id == auth){
@@ -47,11 +44,8 @@ app.get('/', (req: Request, res: Response) =>
   }
 
   if (validAuth){
-    console.log("Valid Authentication");
     res.sendFile(path.resolve(__dirname, '../views/index.html'));
   } else {
-    console.log("Invalid Authentication");
-    console.log("Redirecting to login");
     res.redirect('/login');
   }
 
@@ -85,7 +79,7 @@ app.post('/login', (req: Request, res: Response) => {
   } else {
     res.redirect('/login?err=LOGIN_INCORRECT')
   }
-  
+
 });
 
 app.use('/static', express.static(path.join(__dirname, '..', 'static')));
