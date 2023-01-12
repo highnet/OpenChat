@@ -6,7 +6,9 @@ import fs from "fs";
 
 // https://greensock.com/
 
-// fs.readFileSync()
+// websockets for chat
+
+// socket.io
 
 let validPasswords: Array<[string, string]> = [
     ["admin", "admin"]
@@ -29,12 +31,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
+let users = JSON.parse(fs.readFileSync('users.json','utf8'));
+
 app.get('/', (req: Request, res: Response) => 
 {
     let session = req.session;
     
     if (validAuthTokens.includes(session.id)){
-        res.sendFile(path.resolve(__dirname, 'index.html'));
+        res.sendFile(path.resolve(__dirname, '../views/index.html'));
     } else {
        res.redirect('/login');
     }
@@ -43,20 +47,25 @@ app.get('/', (req: Request, res: Response) =>
 
 
 app.get('/login', (req: Request, res: Response) => {
-    res.sendFile(path.resolve(__dirname, 'login.html'));
+    res.sendFile(path.resolve(__dirname, '../views/login.html'));
 });
 
 app.post('/login', (req: Request, res: Response) => {
-  let username = req.body.username;
-  let password = req.body.password;
+  let usernameInput = req.body.username;
+  let passwordInput = req.body.password;
 
-  if (username == "admin" && password=="admin")
-  {
+  let validInput: boolean = false;
+  for(let user of users){
+    if (usernameInput == user.username && passwordInput == user.password ){
+      validInput = true;
+      break;
+    }
+  }
+
+  if (validInput){
     validAuthTokens.push(req.session.id);
     res.redirect('/');
-  } 
-  else 
-  {
+  } else {
     res.redirect('/login?err=LOGIN_INCORRECT')
   }
 });
