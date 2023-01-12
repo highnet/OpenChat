@@ -22,7 +22,20 @@ p {
     color: var(--color-paragraphs)
 }
 
-.container {
+input {
+    margin-bottom: 16px;
+    border-radius: 4%;
+    border: 1px solid lightgray;
+    color: var(--color-primary);
+    font-size: 2rem;
+    outline: 0;
+    justify-content: center;
+    align-content: center;
+    padding: 1rem 1rem;
+
+}
+
+.container { 
     max-width: 1140px;
     margin: 0 auto;
     justify-content: center;
@@ -30,11 +43,19 @@ p {
 
 .grid {
     display: grid;
-    margin-bottom: 16px;
+}
+
+
+.grid-1x2{
+    grid-template-columns: 1fr 1fr;
 }
 
 .logo {
     width: 512px;
+}
+
+.logo-small {
+    width: 256px;
 }
 
 .hint {
@@ -50,15 +71,6 @@ p {
 .hint-password{
     font-size: 2.5rem;
 
-}
-
-input{
-    margin-bottom: 16px;
-    border-radius: 4%;
-    border: 2px solid var(--color-body);
-    color: var(--color-headings);
-    font-size: 2rem;
-    outline: 0;
 }
 
 .btn{
@@ -86,3 +98,21 @@ input{
     height: 5rem;
 }
 
+.chat-message{
+    display: flex;
+    margin-bottom: 3rem;
+}
+
+.chat-text{
+    font-style: italic;
+}
+
+.chat-bubble {
+    height: 32px;
+    width: 32px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
