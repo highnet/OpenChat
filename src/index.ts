@@ -85,6 +85,7 @@ app.post('/login', (req: Request, res: Response) => {
   } else {
     res.redirect('/login?err=LOGIN_INCORRECT')
   }
+  
 });
 
 app.use('/static', express.static(path.join(__dirname, '..', 'static')));
