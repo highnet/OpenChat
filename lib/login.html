@@ -8,15 +8,18 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="login">
-    <img class="ufo" src="./logo.svg" alt="" />
-    <form class="credentials" action="" method="post">
-        <p class="username">Username</p>
-        <input type="text" name="username" placeholder="SpongeBob" required>
-        <p class="password">Password</p>
+    <div class="container login grid">
+    <img class="logo" src="./logo.svg" alt="" />
+    <form class="credentials grid" action="" method="post">
+        <h1 class="hint hint-username">Username</h1>
+        <input type="text" name="username" required>
+        <h1 class="hint hint-password">Password</h1>
         <input type="password" name="password" required>
-        <input type="submit" value="Log In">
+        <input class="btn btn-elegant btn-small" type="submit" value="Log In">
     </form>
     </div>
+        <h1>Lorem, ipsum.</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt quos nam, repudiandae delectus vero voluptas
+            illum repellat quae facilis.</p>
 </body>
 </html>

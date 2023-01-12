@@ -1,22 +1,88 @@
 :root {
-    --color-primary: #5e17eb;
-    /* --color-headings: #1b0760; */
-    /* --color-accent: #ff3400; */
-    /* --color-secondary: #00d9ff; */
+    --color-primary: rgba(131, 58, 180, 1);
+    --color-accent: rgba(252, 176, 69, 1);
+    --color-headings: white;
+    --color-paragraphs: rgb(251, 255, 0);
 }
 
-.login{
-    border: 1px solid gray;
+html {
+    font-size: 62.5%;
 }
 
-.username {
-    font-size: 2rem;
+body {
+    font-family: Inter, Arial, Arial, Helvetica, sans-serif;
+    background: linear-gradient(90.01deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+}
+
+h1{
+    color: var(--color-headings)
+}
+
+p {
+    color: var(--color-paragraphs)
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    margin-bottom: 16px;
+}
+
+.logo {
+    width: 512px;
+}
+
+.hint {
     font-weight: bold;
-    color: var(--color-primary);
+    text-align: center;
 }
 
-.password{
-    font-size: 1.5rem;
-    font-weight: lighter;
-        color: var(--color-primary);
+.hint-username {
+    font-size: 3rem;
+
 }
+
+.hint-password{
+    font-size: 2.5rem;
+
+}
+
+input{
+    margin-bottom: 16px;
+    border-radius: 4%;
+    border: 2px solid var(--color-body);
+    color: var(--color-headings);
+    font-size: 2rem;
+    outline: 0;
+}
+
+.btn{
+
+    justify-self: center;
+    align-self: center;
+    font-size: 1.8rem;
+    color: white;
+    background-color: rgba(131, 58, 180, 1);
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: var(--color-accent)
+}
+
+.btn-elegant{
+    border-radius: 48px;
+    border: 0;
+
+}
+
+.btn-small{
+    width: 15rem;
+    height: 5rem;
+}
+
