@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "start": "nodemon lib/index.js"
+    "start": "nodemon --watch lib lib/index.js"
   },
   "keywords": [],
   "author": "",
