@@ -4,7 +4,6 @@ import path from 'path';
 import session from 'express-session';
 import fs from "fs";
 
-// https://expressjs.com/en/starter/static-files.html
 // https://greensock.com/
 
 // fs.readFileSync()
