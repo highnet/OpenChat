@@ -1,5 +1,4 @@
-"use strict";
-function generateChatMessageHTML(msg) {
+ function generateChatMessageHTML(msg: string){
     let component = `
     <div class="chat-message grid grid-1x2">
         <span class="chat-bubble"></span>
@@ -9,5 +8,5 @@ function generateChatMessageHTML(msg) {
         </div>`;
     let div = document.createElement("div");
     div.innerHTML = component;
-    return div;
-}
+    return div;    
+  }
