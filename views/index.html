@@ -31,24 +31,6 @@
 
     <script src="../static/chatMessage.js"></script>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>    
-    <script>
-      var socket = io();
-      var form = document.getElementById("form");
-      var input = document.getElementById("input");
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit("chat message", input.value);
-          input.value = "";
-        }
-      });
-
-      socket.on("chat message", function (msg) {
-        window.scrollTo(0, document.body.scrollHeight);
-        var message = document.createElement("div");
-        chatmessages.appendChild(generate(msg));
-      });
-    </script>
+    <script src="../static/chatInstance.js"></script>
   </body>
 </html>
