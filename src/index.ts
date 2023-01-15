@@ -7,10 +7,6 @@ import fs from "fs";
 
 // https://greensock.com/
 
-// websockets for chat
-
-// socket.io
-
 const app = express();
 app.set('trust proxy', 1)
 
