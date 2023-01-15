@@ -9,7 +9,7 @@ function generate(msg){
     return stringToHTML(component);    
 }
 
-var stringToHTML = function (str) {
+function stringToHTML(str) {
 	var parser = new DOMParser();
 	var doc = parser.parseFromString(str, 'text/html');
 	return doc.body.firstChild;
