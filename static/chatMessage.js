@@ -1,4 +1,4 @@
-function generate(msg){
+ function generateChatMessageHTML(msg){
     let component = `
     <div class="chat-message grid grid-1x2">
         <span class="chat-bubble"></span>
@@ -6,11 +6,7 @@ function generate(msg){
             ${msg}
         </p>
         </div>`;
-    return stringToHTML(component);    
-}
-
-function stringToHTML(str) {
-	var parser = new DOMParser();
-	var doc = parser.parseFromString(str, 'text/html');
-	return doc.body.firstChild;
-};
+    let div = document.createElement("div");
+    div.innerHTML = component;
+    return div;    
+  }

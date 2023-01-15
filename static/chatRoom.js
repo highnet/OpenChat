@@ -13,5 +13,5 @@ form.addEventListener("submit", function (e) {
 socket.on("chat message", function (msg) {
   window.scrollTo(0, document.body.scrollHeight);
   var message = document.createElement("div");
-  chatmessages.appendChild(generate(msg));
+  chatmessages.appendChild(generateChatMessageHTML(msg));
 });
