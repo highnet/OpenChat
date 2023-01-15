@@ -1,28 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Project Alpha</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet" />
     <link rel="stylesheet" href="/static/normalize.css" />
-    <link rel="stylesheet" href="/static/styles.css"/>
-
-</head>
-<body>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
     <img class="container grid logo-small" src="../static/logo.svg" alt="" />
-    <div class="container grid">
-        <div class="chat-message grid grid-1x2">
-            <span class="chat-bubble"></span>
-            <p class="chat-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, dolorem.</p>
-        </div>
-        <div class="chat-message grid grid-1x2">
-            <p class="chat-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, dolorem.</p>
-            <span class="chat-bubble"></span>
-        </div>
+    <div class="container grid" id="chatmessages">
+      <div class="chat-message grid grid-1x2">
+        <span class="chat-bubble"></span>
+        <p class="chat-text">Welcome!</p>
+      </div>
     </div>
-</body>
+
+    <div class="container">
+      <form id="form" action="">
+        <input id="input" />
+        <button>Send</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="../static/chatMessage.js"></script>
+    <script>
+      var socket = io();
+      var form = document.getElementById("form");
+      var input = document.getElementById("input");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit("chat message", input.value);
+          input.value = "";
+        }
+      });
+
+      socket.on("chat message", function (msg) {
+        window.scrollTo(0, document.body.scrollHeight);
+        var message = document.createElement("div");
+        chatmessages.appendChild(generate(msg));
+      });
+    </script>
+  </body>
 </html>
