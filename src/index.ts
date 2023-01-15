@@ -4,6 +4,7 @@ import path from 'path';
 import session from 'express-session';
 import fs from "fs";
 
+
 // https://greensock.com/
 
 // websockets for chat
@@ -11,7 +12,6 @@ import fs from "fs";
 // socket.io
 
 const app = express();
-
 app.set('trust proxy', 1)
 
 app.use(session({
@@ -22,21 +22,24 @@ app.use(session({
 }))
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
 app.use(bodyParser.json())
+app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 
 let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 
 let auths: string[] = [];
 
+import http from 'http';
+let server = http.createServer(app);
+import { Server } from "socket.io";
+let io = new Server(server);
+
 app.get('/', (req: Request, res: Response) => 
 {
   let session = req.session;
   let validAuth: boolean = false;
-  
-  
+
   for(let auth of auths){
-    console.log(auth);
     if (session.id == auth){
       validAuth = true;
       break;
@@ -48,7 +51,7 @@ app.get('/', (req: Request, res: Response) =>
   } else {
     res.redirect('/login');
   }
-
+  
 });
 
 
@@ -61,8 +64,6 @@ app.post('/login', (req: Request, res: Response) => {
   let passwordInput = req.body.password;
   let session = req.session;
 
-  console.log("session ID:", session.id);
-
   let validCredentials: boolean = false;
   for(let user of users){
     if (usernameInput == user.username && passwordInput == user.password){
@@ -73,7 +74,6 @@ app.post('/login', (req: Request, res: Response) => {
 
   if (validCredentials){
     auths.push(session.id);
-    fs.writeFileSync('auths.json', JSON.stringify(auths),'utf8');
     console.log("Redirecting to /");
     res.redirect('/');
   } else {
@@ -82,7 +82,20 @@ app.post('/login', (req: Request, res: Response) => {
 
 });
 
-app.use('/static', express.static(path.join(__dirname, '..', 'static')));
-app.listen(3000, () => {
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+    socket.on('chat message', (msg) => {
+    console.log('chat message: ' + msg);
+    io.emit('chat message', msg);
+  });
+});
+
+server.listen(3000, () => {
     console.log('The application is listening on port 3000!');
 })
+
+
+
