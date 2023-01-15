@@ -1,3 +1,4 @@
+/*
 import { io } from "socket.io-client";
 
 const socket = io();
@@ -32,3 +33,4 @@ socket.on("chat message", function (msg:string) {
     div.innerHTML = component;
     return div;    
   }
+  */
