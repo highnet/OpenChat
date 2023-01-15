@@ -141,9 +141,20 @@ input {
     
 }
 
+.banner{
+        position: relative;
+        z-index: 99;
+}
+
 .underconstruction{
     display: block;
     width: 100%;
     height: 32px;
     object-fit: cover;
+    position: fixed;
+    z-index: 999;
+}
+
+.underconstruction-bottom{
+    bottom: 0;
 }

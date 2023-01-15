@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <img
-      class="container underconstruction"
-      src="../static/underconstruction.svg"
-      alt="" />
+    <div class="banner">
+      <img
+        class="container underconstruction"
+        src="../static/underconstruction.svg"
+        alt="" />
+    </div>
     <img class="container grid logo-small" src="../static/logo.svg" alt="" />
     <div class="container grid" id="chatmessages">
       <div class="chat-message grid grid-1x2">
@@ -31,6 +33,13 @@
         <input id="input" />
         <button>Send</button>
       </form>
+    </div>
+
+    <div class="banner">
+      <img
+        class="container underconstruction underconstruction-bottom"
+        src="../static/underconstruction.svg"
+        alt="" />
     </div>
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
