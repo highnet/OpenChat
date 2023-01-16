@@ -14,15 +14,13 @@ form.addEventListener("submit", function (e) {
 });
 
 socket.on("chat message", function (msg) {
-  window.scrollTo(0, document.body.scrollHeight);
   var message = document.createElement("div");
   chatMessages.appendChild(generateChatMessageHTML(msg));
   numberOfMessages++;
-  console.log(numberOfMessages);
-
-  if (numberOfMessages == 10){
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  if (numberOfMessages == 25){
     chatMessages.removeChild(chatMessages.children[0]);
     numberOfMessages--;
-    }
+  }
 
 });
