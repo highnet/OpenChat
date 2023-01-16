@@ -56,7 +56,7 @@ input {
 }
 
 .logo-small {
-    width: 256px;
+    width: 156px;
 }
 
 .logo-tiny{
@@ -115,22 +115,25 @@ input {
 
 
 .chat-message{
-    display: flex;
-    margin-bottom: 3rem;
+    display:inline-flex;
+    margin-bottom: 1rem;
+    align-items: center;
 }
 
-.chat-text{
+.chat-message-chat-text{
     font-style: italic;
+    font-size: 1.5rem;
 }
 
-.chat-bubble {
+.chat-message-chat-bubble {
     height: 32px;
     width: 32px;
     background-color: greenyellow;
     border-radius: 50%;
-    display: inline-block;
     margin-right: 1rem;
     margin-left: 1rem;
+    min-height: 32px;
+    min-height: 32px;
 }
 
 .login{
@@ -163,4 +166,8 @@ input {
     transform: translate(-50%, 0);
     min-width: 400px;
     min-height: 60px;
+}
+
+.chat-input-tolbar-inputfield{
+    margin-right: 5px;
 }

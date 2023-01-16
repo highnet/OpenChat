@@ -1,9 +1,9 @@
 "use strict";
 function generateChatMessageHTML(msg) {
     let component = `
-    <div class="chat-message grid grid-1x2">
-        <span class="chat-bubble"></span>
-        <p class="chat-text">
+    <div class="container grid grid-1x2 chat-message">
+        <span class="container chat-message-chat-bubble"></span>
+        <p class="container chat-message-chat-text">
             ${msg}
         </p>
         </div>`;
