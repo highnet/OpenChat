@@ -45,9 +45,12 @@ input {
     display: grid;
 }
 
-
 .grid-1x2{
     grid-template-columns: 1fr 1fr;
+}
+
+.grid-1x3 {
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .logo {
@@ -119,10 +122,10 @@ input {
     overflow-x: hidden;
 }
 
-.chat-message:nth-child(i){
-    opacity: i*0.1;
-}
 
+.chat-messages{
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+}
 
 .chat-message{
     display:inline-flex;
@@ -180,22 +183,35 @@ input {
 }
 
 .chat-input-toolbar{
-    height: 6%;
+    width: 500px;
+    height: 5vh;
     position: fixed;
     z-index: 999;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
     min-width: 400px;
-    min-height: 60px;
+    min-height: 50px;
+    display: flex;
+}
+
+.btn-submit{
+    justify-self: left;
+    align-self: normal;
 }
 
 .chat-input-toolbar-inputfield{
-    margin-right: -45px;
     height: 18px;
-    width: 346px;
     text-indent: 10px;
-    margin-left: 15px;
+}
+
+.chat-input-toolbar-inputfield-message{
+    width: 200px;
     border-radius: 22px;
+    margin-right: 5px;
+}
+
+.chat-input-toolbar-inputfield-nickname {
+    width: 100px;
 }
 

@@ -1,15 +1,15 @@
 var socket = io();
-var form = document.getElementById("form");
-var input = document.getElementById("input");
+var messageInputForm = document.getElementById("messageInput");
+var messageInputField = document.getElementById("messageInputField");
 
 let numberOfMessages = 0;
 let chatMessages = document.getElementById("chatmessages");
 
-form.addEventListener("submit", function (e) {
+messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  if (input.value) {
-    socket.emit("chat message", input.value);
-    input.value = "";
+  if (messageInputField.value) { /*<- send msg here */
+    socket.emit("chat message", messageInputField.value);
+    messageInputField.value = "";
     }
 });
 

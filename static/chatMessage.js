@@ -4,7 +4,7 @@ function generateChatMessageHTML(msg) {
     <div class="container grid grid-1x2 chat-message">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname">
-            ${"Joaquin: "} 
+            ${"RandomUsername6543: "} 
         </p>
         <p class="container chat-message-chat-text">
             ${msg}
