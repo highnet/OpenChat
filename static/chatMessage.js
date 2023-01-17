@@ -1,7 +1,7 @@
 "use strict";
 function generateChatMessageHTML(msg) {
     let component = `
-    <div class="container grid grid-1x2 chat-message">
+    <div class="container chat-message chat-message-mine">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname">
             ${"RandomUsername6543: "} 

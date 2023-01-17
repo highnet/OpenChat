@@ -2,7 +2,10 @@
     --color-primary: rgba(131, 58, 180, 1);
     --color-accent: rgba(252, 176, 69, 1);
     --color-headings: white;
-    --color-paragraphs: rgb(251, 255, 0);
+    --color-paragraphs: rgb(255, 255, 255);
+    --color-gradient-start: #833ab4;
+    --color-gradient-middle: #fd1d1d;
+    --color-gradient-end: #fcb045;
 }
 
 html {
@@ -11,7 +14,7 @@ html {
 
 body {
     font-family: Inter, Arial, Arial, Helvetica, sans-serif;
-    background: linear-gradient(90.01deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background: linear-gradient(90.01deg, var(--color-gradient-start) 0%, var(--color-gradient-middle) 50%, var(--color-gradient-end) 100%);
 }
 
 h1{
@@ -115,22 +118,71 @@ input {
     height: 4rem;
 }
 
-.chat-messages{
+.chat-background{
+    background-image: url(/static/chatbackground_2.svg);
+}
+
+.chat-room{
+    min-width: 500px;
+    position: relative;
     height: 64vh;
+    mask-image: linear-gradient(to top, black 80%, transparent 100%);
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.chat-messages{
+    position: absolute;
+    bottom: 0;
     overflow: scroll;
     scroll-behavior: smooth;
     overflow-x: hidden;
-}
-
-
-.chat-messages{
-    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-message{
     display:inline-flex;
     margin-bottom: 1rem;
     align-items: center;
+    --opacity: 0.8;
+    border-radius: 20px;
+    padding-right: 4px;
+    max-width: 80%;
+    max-height: 200px;
+    margin-top: 1px;
+
+}
+
+.chat-message-mine{
+        background: linear-gradient(180deg,
+                    rgba(131, 58, 180, var(--opacity)) 0%,
+                    rgba(152, 55, 176, var(--opacity)) 6.25%,
+                    rgba(171, 51, 169, var(--opacity)) 12.5%,
+                    rgba(188, 49, 162, var(--opacity)) 18.75%,
+                    rgba(204, 49, 155, var(--opacity)) 25%,
+                    rgba(217, 52, 148, var(--opacity)) 31.25%,
+                    rgba(228, 57, 140, var(--opacity)) 37.5%,
+                    rgba(238, 65, 131, var(--opacity)) 43.75%,
+                    rgba(246, 75, 121, var(--opacity)) 50%,
+                    rgba(252, 86, 111, var(--opacity)) 56.25%,
+                    rgba(255, 98, 103, var(--opacity)) 62.5%,
+                    rgba(255, 112, 96, var(--opacity)) 68.75%,
+                    rgba(255, 124, 88, var(--opacity)) 75%,
+                    rgba(255, 137, 82, var(--opacity)) 81.25%,
+                    rgba(255, 151, 76, var(--opacity)) 87.5%,
+                    rgba(255, 163, 71, var(--opacity)) 93.75%,
+                    rgba(252, 176, 69, var(--opacity)) 100%);
+}
+
+.chat-message-other {
+    background: linear-gradient(180deg, rgb(13.333% 15.294% 99.608%) 0%, rgb(13.334% 15.294% 99.608%) 6.25%, rgb(13.342% 15.297% 99.608%) 12.5%, rgb(13.376% 15.309% 99.608%) 18.75%, rgb(13.47% 15.342% 99.609%) 25%, rgb(13.666% 15.41% 99.612%) 31.25%, rgb(14.024% 15.535% 99.616%) 37.5%, rgb(14.612% 15.74% 99.622%) 43.75%, rgb(15.515% 16.054% 99.632%) 50%, rgb(16.827% 16.511% 99.647%) 56.25%, rgb(18.659% 17.149% 99.668%) 62.5%, rgb(21.131% 18.01% 99.695%) 68.75%, rgb(24.377% 19.141% 99.732%) 75%, rgb(28.544% 20.592% 99.779%) 81.25%, rgb(33.792% 22.42% 99.838%) 87.5%, rgb(40.294% 24.685% 99.911%) 93.75%, rgb(48.235% 27.451% 100%) 100%);
+    text-align: right;
+    direction: rtl;
+    display: flex;
+    margin-right: 0px;
 }
 
 .chat-message-chat-nickname {
@@ -141,7 +193,7 @@ input {
 .chat-message-chat-text{
     font-style: italic;
     font-size: 1.1rem;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 
@@ -160,6 +212,10 @@ input {
     border: 2px solid greenyellow;
 }
 
+
+.chat-placeholder{
+    margin-top: 65px;
+}
 .login{
     margin: 0 10rem 0 10rem;
 }
@@ -184,7 +240,7 @@ input {
 
 .chat-input-toolbar{
     width: 500px;
-    height: 5vh;
+    height: 10vh;
     position: fixed;
     z-index: 999;
     bottom: 0;

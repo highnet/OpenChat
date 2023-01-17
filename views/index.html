@@ -22,13 +22,20 @@
     </div>
 
     <img class="container grid logo-small" src="../static/logo.svg" alt="" />
-    <div class="container chat-messages" id="chatmessages">
-      </div>
+    <div class="container chat-background">
+      <div class="container chat-room">
+        <div class="container chat-messages" id="chatmessages">
+          <div class="chat-placeholder"></div>
+        </div>
+      
+        </div>
+    </div>
+
 
     <div class="container chat-input-toolbar">
       <form id="messageInput">
-        <input class="chat-input-toolbar-inputfield chat-input-toolbar-inputfield-nickname" value="joaquin">
-        <input class="chat-input-toolbar-inputfield chat-input-toolbar-inputfield-message" id="messageInputField">
+        <input class="chat-input-toolbar-inputfield chat-input-toolbar-inputfield-nickname" value="joaquin" maxlength="12">
+        <input class="chat-input-toolbar-inputfield chat-input-toolbar-inputfield-message" id="messageInputField" maxlength="150">
         <button class="btn btn-elegant btn-tiny btn-submit">-></button>
       </form>
     </div>
