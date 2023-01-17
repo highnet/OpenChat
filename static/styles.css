@@ -40,7 +40,7 @@ input {
 .container { 
     margin: 0 auto;
     justify-content: center;
-    border: 1px solid lightgray;
+    border: 0px solid lightgray;
 }
     
 
@@ -175,6 +175,7 @@ input {
                     rgba(255, 151, 76, var(--opacity)) 87.5%,
                     rgba(255, 163, 71, var(--opacity)) 93.75%,
                     rgba(252, 176, 69, var(--opacity)) 100%);
+        margin-left: 0px;
 }
 
 .chat-message-other {
@@ -185,19 +186,21 @@ input {
     margin-right: 0px;
 }
 
-.other-chat{
+.chat-element{
     display: flex;
 }
 
 .chat-message-chat-nickname {
     align-self: flex-start;
     margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .chat-message-chat-text{
     font-style: italic;
     font-size: 1.1rem;
     word-break: break-word;
+    direction: ltr;
 }
 
 

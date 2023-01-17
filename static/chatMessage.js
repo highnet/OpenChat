@@ -14,12 +14,7 @@ function generateChatMessageHTML(msg, other) {
 
     let div = document.createElement("div");
     div.innerHTML = component;
+    div.classList.add("chat-element");
     
-    if(other){
-        div.classList.add("other-chat");
-
-    } else {
-        div.classList.add("mine-chat");
-    }
     return div;
 }
