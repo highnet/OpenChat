@@ -185,6 +185,10 @@ input {
     margin-right: 0px;
 }
 
+.other-chat{
+    display: flex;
+}
+
 .chat-message-chat-nickname {
     align-self: flex-start;
     margin-right: 1rem;

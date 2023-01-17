@@ -15,7 +15,7 @@ messageInputForm.addEventListener("submit", function (e) {
 
 socket.on("chat message", function (msg) {
   var message = document.createElement("div");
-  chatMessages.appendChild(generateChatMessageHTML(msg));
+  chatMessages.appendChild(generateChatMessageHTML(msg,true));
   numberOfMessages++;
   chatMessages.scrollTop = chatMessages.scrollHeight;
   if (numberOfMessages == 25){
