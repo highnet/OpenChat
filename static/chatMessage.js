@@ -1,6 +1,6 @@
 "use strict";
 function generateChatMessageHTML(messageData) {
-    let other = false;
+    let other = nicknameInputField.value == messageData.nickname ? false:true;
     let component = `
     <div class="container chat-message ${other ? "chat-message-other":"chat-message-mine"}">
         <span class="container chat-message-chat-bubble"></span>
