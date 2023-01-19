@@ -2,13 +2,11 @@ let socket = io();
 let messageInputForm = document.getElementById("messageInput");
 let messageInputField = document.getElementById("messageInputField");
 let nicknameInputField = document.getElementById("nicknameInputField");
-let numberOfMessages = 0;
 let chatMessages = document.getElementById("chatmessages");
 import { MessageData } from "./messageData.js";
 import { Chatter } from "./chatter.js";
 
-let chatter = new Chatter();
-
+let chatterMe = new Chatter();
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -27,11 +25,5 @@ messageInputForm.addEventListener("submit", function (e) {
 socket.on("chat message", function (messageData) {
   
   chatMessages.appendChild(generateChatMessageHTML(messageData));
-  numberOfMessages++;
   chatMessages.scrollTop = chatMessages.scrollHeight;
-  if (numberOfMessages == 25){
-    chatMessages.removeChild(chatMessages.children[0]);
-    numberOfMessages--;
-  }
-
 });
