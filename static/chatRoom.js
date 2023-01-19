@@ -1,21 +1,28 @@
-var socket = io();
-var messageInputForm = document.getElementById("messageInput");
-var messageInputField = document.getElementById("messageInputField");
+let socket = io();
+let messageInputForm = document.getElementById("messageInput");
+let messageInputField = document.getElementById("messageInputField");
+let nicknameInputField = document.getElementById("nicknameInputField");
 
 let numberOfMessages = 0;
 let chatMessages = document.getElementById("chatmessages");
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  if (messageInputField.value) { /*<- send msg here */
-    socket.emit("chat message", messageInputField.value);
+
+  let messageData = {
+    text: messageInputField.value,
+    nickname: nicknameInputField.value
+  };
+
+  if (messageData.text != "") {
+    socket.emit("chat message", messageData);
     messageInputField.value = "";
     }
 });
 
-socket.on("chat message", function (msg) {
-  var message = document.createElement("div");
-  chatMessages.appendChild(generateChatMessageHTML(msg,true));
+socket.on("chat message", function (messageData) {
+  let message = document.createElement("div");
+  chatMessages.appendChild(generateChatMessageHTML(messageData));
   numberOfMessages++;
   chatMessages.scrollTop = chatMessages.scrollHeight;
   if (numberOfMessages == 25){

@@ -1,13 +1,14 @@
 "use strict";
-function generateChatMessageHTML(msg, other) {
+function generateChatMessageHTML(messageData) {
+    let other = false;
     let component = `
     <div class="container chat-message ${other ? "chat-message-other":"chat-message-mine"}">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname">
-            ${"RandomUsername6543:"} 
+            ${messageData.nickname + ':'} 
         </p>
         <p class="container chat-message-chat-text">
-            ${msg}
+            ${messageData.text}
         </p>
         </div>`;
 
