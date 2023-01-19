@@ -2,17 +2,17 @@ let socket = io();
 let messageInputForm = document.getElementById("messageInput");
 let messageInputField = document.getElementById("messageInputField");
 let nicknameInputField = document.getElementById("nicknameInputField");
-
 let numberOfMessages = 0;
 let chatMessages = document.getElementById("chatmessages");
+import {MessageData} from "./messageData.js";
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  let messageData = {
-    text: messageInputField.value,
-    nickname: nicknameInputField.value
-  };
+  let messageData = new MessageData(
+    messageInputField.value, 
+    nicknameInputField.value
+    );
 
   if (messageData.text != "") {
     socket.emit("chat message", messageData);
@@ -21,7 +21,7 @@ messageInputForm.addEventListener("submit", function (e) {
 });
 
 socket.on("chat message", function (messageData) {
-  let message = document.createElement("div");
+  
   chatMessages.appendChild(generateChatMessageHTML(messageData));
   numberOfMessages++;
   chatMessages.scrollTop = chatMessages.scrollHeight;
