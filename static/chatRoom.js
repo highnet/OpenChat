@@ -4,7 +4,11 @@ let messageInputField = document.getElementById("messageInputField");
 let nicknameInputField = document.getElementById("nicknameInputField");
 let numberOfMessages = 0;
 let chatMessages = document.getElementById("chatmessages");
-import {MessageData} from "./messageData.js";
+import { MessageData } from "./messageData.js";
+import { Chatter } from "./chatter.js";
+
+let chatter = new Chatter();
+
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
