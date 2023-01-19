@@ -25,6 +25,8 @@ let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 
 let auths: string[] = [];
 
+let activeClients: string[] = [];
+
 import http from 'http';
 let server = http.createServer(app);
 import { Server } from "socket.io";

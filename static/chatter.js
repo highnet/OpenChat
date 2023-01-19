@@ -3,14 +3,7 @@ let _nickname = "";
 export class Chatter{
 
     constructor(){
-        let _nickname = "";
-        let adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
-        let subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
-        let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
-        let randomSubjective = subjectives[Math.floor(Math.random()*subjectives.length)];
-        _nickname += randomAdjective;
-        _nickname += randomSubjective;
-        _nickname += Math.floor(Math.random() * 90 + 10);    
+        _nickname = this.generateRandomNickname();
         nicknameInputField.value = _nickname;
     }
 
@@ -20,5 +13,17 @@ export class Chatter{
  
     set nickname(value){
         _nickname = value;
+    }
+
+    generateRandomNickname(){
+        let result = "";
+        let adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
+        let subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
+        let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
+        let randomSubjective = subjectives[Math.floor(Math.random()*subjectives.length)];
+        result += randomAdjective;
+        result += randomSubjective;
+        result += Math.floor(Math.random() * 90 + 10); 
+        return result; 
     }
 }
