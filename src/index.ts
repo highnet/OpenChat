@@ -82,9 +82,10 @@ app.post('/login', (req: Request, res: Response) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  let uuid = uuidv4(); 
-  activeClients.push(uuid);
-  socket.emit("you logged in", uuid, activeClients);
+  let newClientUserUniqueID = uuidv4(); 
+  console.log(newClientUserUniqueID);
+  activeClients.push(newClientUserUniqueID);
+  socket.emit("you logged in", newClientUserUniqueID, activeClients);
   socket.broadcast.emit("a client logged in", activeClients);
   
   socket.on('disconnect', () => {
