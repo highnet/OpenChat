@@ -122,14 +122,15 @@ input {
     height: 4rem;
 }
 
+
 .chat-room{
-    min-width: 500px;
     position: relative;
     height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
     width: 100%;
     background-image: url(/static/chatbackground_2.svg);
     background-size: cover;
+
 }
 
 .chat-messages{
@@ -306,6 +307,7 @@ input {
 .chat-clients-toolbar{
     margin: 0px 0px;
     max-width: 300px;
+    min-width: 150px;
     height: 64vh;
     overflow: scroll;
     scroll-behavior: smooth;
@@ -330,7 +332,7 @@ input {
     margin-bottom: 5px;
     text-align: center;
 }
-.chat-clients-toolbar-clients-list-username-text{
+.chat-clients-toolbar-clients-list-username-text-mine{
     font-size: 1.1rem;
     font-weight: bold;
 }
