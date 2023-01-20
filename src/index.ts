@@ -12,7 +12,7 @@ app.set('trust proxy', 1)
 
 app.use(session({
     secret: 'teddy bear', 
-    cookie: { maxAge: 1000000 },
+    cookie: { maxAge: 100000000000000 },
     resave: false,
     saveUninitialized: true
 }))
@@ -87,12 +87,18 @@ io.on('connection', (socket) => {
   socket.emit("you logged in", uuid, activeClients);
   socket.broadcast.emit("a client logged in", activeClients);
   
-  socket.on('disconnect', (uuid) => {
-    var i = activeClients.indexOf(uuid);
-    activeClients.splice(i,1);
+  socket.on('disconnect', () => {
+  console.log(activeClients);
+  let index = activeClients.indexOf(newClientUserUniqueID);
+  console.log("index of ", newClientUserUniqueID, "is: ", index);
+  if (index !== -1){
+  activeClients.splice(index, 1);
+  }
+  console.log(activeClients);
+
     socket.broadcast.emit("a client logged out", activeClients);
   });
- 
+
   socket.on('chat message', (msg) => {
       io.emit('chat message', msg);
   });
