@@ -9,7 +9,7 @@ function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
     <div class="container chat-message ${messageBelongsToClient ? "chat-message-other":"chat-message-mine"}">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname ${messageBelongsToClient ? "chat-message-chat-nickname-other" : "chat-message-chat-nickname-mine"}">
-            ${messageData.uuid + ':'} 
+            ${messageData.nickname + ':'} 
         </p>
         <p class="container chat-message-chat-text">
             ${messageData.text}
@@ -23,22 +23,25 @@ function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
    chatMessages.appendChild(div);
 }
 
-function appendToNewChatClientsListHTMLComponentsFromClientsList(clients){
+function appendToNewChatClientsListHTMLComponentsFromClientsList(clients, nicknames){
+    console.log(nicknames);
     while( chatClientsList.firstChild ){
         chatClientsList.removeChild( chatClientsList.firstChild );
     }
+    let i = 0;
     for(let client of clients){
         let listItem = document.createElement('li');
         let paragraph = document.createElement('p');
         if (chatterClient.uuid == client){
-            paragraph.appendChild(document.createTextNode(client + " (You)"));
+            paragraph.appendChild(document.createTextNode(nicknames[i] + " (You)"));
             paragraph.classList.add("chat-clients-toolbar-clients-list-username-text-mine")
         } else {
-            paragraph.appendChild(document.createTextNode(client));
+            paragraph.appendChild(document.createTextNode(nicknames[i]));
         }
         listItem.appendChild(paragraph);
 
         chatClientsList.appendChild(listItem);
+        i++;
     }
 }
 
@@ -59,19 +62,19 @@ socket.on("chat message", function (messageData) {
 });
 
 
-socket.on("a client logged in", function (clients) {
+socket.on("a client logged in", function (clients, nicknames) {
     console.log("a client logged in");
-    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients, nicknames);
 });
 
-socket.on("a client logged out", function (clients) {
+socket.on("a client logged out", function (clients, nicknames) {
     console.log("a client logged out");
-    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients, nicknames);
 
 });
 
-socket.on("you logged in", function (uuidv4, clients) {
+socket.on("you logged in", function (uuidv4, nickname, clients, nicknames) {
     console.log("you logged in");
-    chatterClient = new Chatter(uuidv4);
-    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
+    chatterClient = new Chatter(uuidv4,nickname);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients, nicknames);
 });

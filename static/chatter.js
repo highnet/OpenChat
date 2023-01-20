@@ -3,8 +3,10 @@ import { MessageData } from "./messageData.js";
 export class Chatter{
     _uuid = "";
     _messages = [];
-    constructor(uuidv4){
+    _nickname = "";
+    constructor(uuidv4, nickname){
        this._uuid = uuidv4;
+       this._nickname = nickname;
     }
 
     get nickname(){
@@ -31,22 +33,12 @@ export class Chatter{
         this._messages = value;
     }
 
-    generateRandomNickname(){
-        let result = "";
-        const adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
-        const subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
-        let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
-        let randomSubjective = subjectives[Math.floor(Math.random()*subjectives.length)];
-        result += randomAdjective;
-        result += randomSubjective;
-        result += Math.floor(Math.random() * 90 + 10); 
-        return result; 
-    }
 
     generateMessageData(text){
         const messageData = new MessageData(
             messageInputField.value, 
-            this._uuid
+            this._uuid,
+            this._nickname
         );
         this._messages.push(messageData);
         return messageData;

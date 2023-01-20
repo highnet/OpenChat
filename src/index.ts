@@ -26,6 +26,20 @@ let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 let validAuths: string[] = [];
 
 let activeClients: Array<string> = [];
+let activeNicknames: Array<string> = [];
+    
+    function generateRandomNickname(){
+        let result = "";
+        const adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
+        const subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
+        let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
+        let randomSubjective = subjectives[Math.floor(Math.random()*subjectives.length)];
+        result += randomAdjective;
+        result += randomSubjective;
+        result += Math.floor(Math.random() * 90 + 10); 
+        return result; 
+    }
+    
 
 import http from 'http';
 let server = http.createServer(app);
@@ -82,26 +96,33 @@ app.post('/login', (req: Request, res: Response) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  let newClientUserUniqueID = uuidv4(); 
-  console.log(newClientUserUniqueID);
+  let newClientUserUniqueID = uuidv4();
+  let newNickname = generateRandomNickname();
   activeClients.push(newClientUserUniqueID);
-  socket.emit("you logged in", newClientUserUniqueID, activeClients);
-  socket.broadcast.emit("a client logged in", activeClients);
+  activeNicknames.push(newNickname);
+  console.log(activeClients);
+  console.log(activeNicknames);
+  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeClients, activeNicknames);
+  socket.broadcast.emit("a client logged in", activeClients, activeNicknames);
   
   socket.on('disconnect', () => {
-  console.log(activeClients);
-  let index = activeClients.indexOf(newClientUserUniqueID);
-  console.log("index of ", newClientUserUniqueID, "is: ", index);
-  if (index !== -1){
-  activeClients.splice(index, 1);
-  }
-  console.log(activeClients);
+    let index = activeClients.indexOf(newClientUserUniqueID);
+    console.log("index of ", newClientUserUniqueID, "is: ", index);
+    if (index !== -1){
+      activeClients.splice(index, 1);
+    }
+    index = activeNicknames.indexOf(newNickname);
+    console.log("index of ", newNickname, "is: ", index);
+    if (index !== -1){
+      activeNicknames.splice(index, 1);
+    }
 
-    socket.broadcast.emit("a client logged out", activeClients);
+    socket.broadcast.emit("a client logged out", activeClients, activeNicknames);
   });
 
   socket.on('chat message', (msg) => {
       io.emit('chat message', msg);
+      console.log(msg);
   });
 });
 
