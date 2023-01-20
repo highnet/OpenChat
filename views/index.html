@@ -22,13 +22,20 @@
     </div>
 
     <img class="container grid logo-small" src="../static/logo.svg" alt="" />
-    <div class="container chat-background">
-      <div class="container chat-room">
-        <div class="container chat-messages" id="chatMessages">
-          <div class="chat-placeholder"></div>
+    <div class="container chat-house">
+        <div class="container chat-clients-toolbar">
+          <ul id="chatClients" class="chat-clients-toolbar-clients-list">
+          </ul>
         </div>
-      </div>
+            <div class="container chat-background">
+              <div class="container chat-room">
+                <div class="container chat-messages" id="chatMessages">
+                  <div class="chat-placeholder"></div>
+                </div>
+              </div>
+            </div>
     </div>
+
 
     <div class="container chat-input-toolbar">
       <form id="messageInput">
@@ -37,10 +44,7 @@
       </form>
     </div>
 
-    <div class="container chat-clients-toolbar">
-        <ol id="chatClients" class="chat-clients-toolbar-clients-list">
-        </ol>
-    </div>
+
 
     <script src="../static/cacheDoms.js"></script>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>

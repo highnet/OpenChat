@@ -43,8 +43,9 @@ input {
 .container { 
     margin: 0 auto;
     justify-content: center;
-    border: 0px solid lightgray;
+    border: 1px solid lightgray;
 }
+
     
 
 .grid {
@@ -122,6 +123,7 @@ input {
 }
 
 .chat-background{
+    width: 100%;
     background-image: url(/static/chatbackground_2.svg);
 }
 
@@ -130,8 +132,6 @@ input {
     position: relative;
     height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
-    margin-right: 20px;
-    margin-left: 10px;
 }
 
 .chat-messages{
@@ -309,3 +309,21 @@ input {
     border-bottom-left-radius: 2px;
 }
 
+.chat-clients-toolbar{
+    margin: 0px 0px;
+    max-width: 300px;
+}
+
+.chat-clients-toolbar-clients-list{
+    list-style-type: none;
+}
+
+.chat-clients-toolbar-clients-list > li{
+        border: 1px solid black;
+}
+
+.chat-house{
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+}

@@ -23,7 +23,7 @@ function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
    chatMessages.appendChild(div);
 }
 
-function generateNewChatClientsListHTMLComponentFromClientsList(clients){
+function appendToNewChatClientsListHTMLComponentsFromClientsList(clients){
     while( chatClientsList.firstChild ){
         chatClientsList.removeChild( chatClientsList.firstChild );
     }
@@ -56,17 +56,17 @@ socket.on("chat message", function (messageData) {
 
 socket.on("a client logged in", function (clients) {
     console.log("a client logged in");
-    generateNewChatClientsListHTMLComponentFromClientsList(clients);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
 });
 
 socket.on("a client logged out", function (clients) {
     console.log("a client logged out");
-    generateNewChatClientsListHTMLComponentFromClientsList(clients);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
 
 });
 
 socket.on("you logged in", function (uuidv4, clients) {
     console.log("you logged in");
     chatterClient = new Chatter(uuidv4);
-    generateNewChatClientsListHTMLComponentFromClientsList(clients);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(clients);
 });
