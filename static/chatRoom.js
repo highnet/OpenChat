@@ -2,7 +2,6 @@ import { Chatter } from "./chatter.js";
 let socket = io();
 
 let chatterClient = "";
-let nicknames = {};
 
 function convertMessageDataToHTMLComponent(messageData) {
     let messageBelongsToClient = messageData.uuid == chatterClient.uuid ? false : true;
@@ -31,6 +30,9 @@ function generateUsersListHTMLComponent(clients){
     for(let client of clients){
         let listItem = document.createElement('li');
         listItem.innerText = client;
+        if (chatterClient.uuid == client){
+            listItem.innerText += "(You)";
+        }
         chatClientsList.appendChild(listItem);
     }
 }
