@@ -122,18 +122,14 @@ input {
     height: 4rem;
 }
 
-.chat-background{
-    width: 100%;
-        background-image: url(/static/chatbackground_2.svg);
-        background-size: cover;
-}
-
 .chat-room{
     min-width: 500px;
     position: relative;
     height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
-
+    width: 100%;
+    background-image: url(/static/chatbackground_2.svg);
+    background-size: cover;
 }
 
 .chat-messages{
