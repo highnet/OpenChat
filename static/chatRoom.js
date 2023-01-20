@@ -29,10 +29,15 @@ function appendToNewChatClientsListHTMLComponentsFromClientsList(clients){
     }
     for(let client of clients){
         let listItem = document.createElement('li');
-        listItem.innerText = client;
+        let paragraph = document.createElement('p');
         if (chatterClient.uuid == client){
-            listItem.innerText += "(You)";
+            paragraph.appendChild(document.createTextNode(client + " (You)"));
+            paragraph.classList.add("chat-clients-toolbar-clients-list-username-text-mine")
+        } else {
+            paragraph.appendChild(document.createTextNode(client));
         }
+        listItem.appendChild(paragraph);
+
         chatClientsList.appendChild(listItem);
     }
 }

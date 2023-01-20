@@ -130,7 +130,7 @@ input {
 .chat-room{
     min-width: 500px;
     position: relative;
-    height: 64vh;
+
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
 }
 
@@ -312,18 +312,29 @@ input {
 .chat-clients-toolbar{
     margin: 0px 0px;
     max-width: 300px;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .chat-clients-toolbar-clients-list{
     list-style-type: none;
-}
-
-.chat-clients-toolbar-clients-list > li{
-        border: 1px solid black;
+    padding-left: 0;
 }
 
 .chat-house{
+    max-width: 1080px;
     padding-right: 10px;
     padding-left: 10px;
     display: flex;
+    height: 64vh;
+}
+
+.chat-clients-toolbar-clients-list>li {
+    margin-bottom: 5px;
+    text-align: center;
+}
+.chat-clients-toolbar-clients-list-username-text{
+    font-size: 1.1rem;
+    font-weight: bold;
 }
