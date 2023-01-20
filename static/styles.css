@@ -130,7 +130,7 @@ input {
 .chat-room{
     min-width: 500px;
     position: relative;
-
+    height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
 }
 
@@ -312,9 +312,11 @@ input {
 .chat-clients-toolbar{
     margin: 0px 0px;
     max-width: 300px;
-    overflow: scroll;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    height: 64vh;
+        overflow: scroll;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            max-height: 100%;
 }
 
 .chat-clients-toolbar-clients-list{
@@ -327,7 +329,6 @@ input {
     padding-right: 10px;
     padding-left: 10px;
     display: flex;
-    height: 64vh;
 }
 
 .chat-clients-toolbar-clients-list>li {
