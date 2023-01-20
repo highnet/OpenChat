@@ -1,6 +1,7 @@
 import { MessageData } from "./messageData.js";
 
 let _nickname = "";
+let messages = [];
 
 export class Chatter{
 
@@ -29,10 +30,13 @@ export class Chatter{
         return result; 
     }
 
-    generateChatMessage(text){
-        return new MessageData(
+    generateMessageData(text){
+        const messageData = new MessageData(
             messageInputField.value, 
             _nickname
         );
+        messages.push(messageData);
+        return messageData;
     }
+
 }
