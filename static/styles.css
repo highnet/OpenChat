@@ -124,7 +124,8 @@ input {
 
 .chat-background{
     width: 100%;
-    background-image: url(/static/chatbackground_2.svg);
+        background-image: url(/static/chatbackground_2.svg);
+        background-size: cover;
 }
 
 .chat-room{
@@ -132,6 +133,7 @@ input {
     position: relative;
     height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
+
 }
 
 .chat-messages{
@@ -252,10 +254,6 @@ input {
     border: 2px solid greenyellow;
 }
 
-
-.chat-placeholder{
-    margin-top: 65px;
-}
 .login{
     margin: 0 10rem 0 10rem;
 }
@@ -313,10 +311,11 @@ input {
     margin: 0px 0px;
     max-width: 300px;
     height: 64vh;
-        overflow: scroll;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            max-height: 100%;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-height: 100%;
+    background-image: url(/static/chatbackground_0.svg);
 }
 
 .chat-clients-toolbar-clients-list{
