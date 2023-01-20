@@ -24,7 +24,7 @@
     <img class="container grid logo-small" src="../static/logo.svg" alt="" />
     <div class="container chat-background">
       <div class="container chat-room">
-        <div class="container chat-messages" id="chatmessages">
+        <div class="container chat-messages" id="chatMessages">
           <div class="chat-placeholder"></div>
         </div>
       </div>
@@ -37,6 +37,11 @@
         <input class="chat-input-toolbar-inputfield chat-input-toolbar-inputfield-message" id="messageInputField" maxlength="150">
         <button class="btn btn-elegant btn-tiny btn-submit">-></button>
       </form>
+    </div>
+
+    <div class="container chat-clients-toolbar">
+        <ol id="chatClients" class="chat-clients-toolbar-clients-list">
+        </ol>
     </div>
 
     <script src="../static/cacheDoms.js"></script>

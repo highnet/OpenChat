@@ -3,6 +3,8 @@ import express, { Express, Request, Response } from 'express';
 import path from 'path';
 import session from 'express-session';
 import fs from "fs";
+import { v4 as uuidv4 } from 'uuid';
+
 
 // https://greensock.com/
 
@@ -24,7 +26,7 @@ let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 
 let auths: string[] = [];
 
-let activeClients: string[] = [];
+let activeClients: Array<string> = [];
 
 import http from 'http';
 let server = http.createServer(app);
@@ -81,12 +83,19 @@ app.post('/login', (req: Request, res: Response) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  let uuid = uuidv4(); 
+  activeClients.push(uuid);
+  socket.emit("you logged in", uuid, activeClients);
+  socket.broadcast.emit("a client logged in", activeClients);
+  
+  socket.on('disconnect', (uuid) => {
+    var i = activeClients.indexOf(uuid);
+    activeClients.splice(i,1);
+    socket.broadcast.emit("a client logged out", activeClients);
   });
-    socket.on('chat message', (msg) => {
-    console.log('chat message: ' + msg);
-    io.emit('chat message', msg);
+ 
+  socket.on('chat message', (msg) => {
+      io.emit('chat message', msg);
   });
 });
 

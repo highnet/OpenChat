@@ -1,7 +1,7 @@
 import { Chatter } from "./chatter.js";
 let socket = io();
 
-let chatterClient = new Chatter();
+let chatterClient = "";
 
 function convertMessageDataToHTMLComponent(messageData) {
     let messageBelongsToClient = messageData.uuid == chatterClient.uuid ? false : true;
@@ -23,7 +23,16 @@ function convertMessageDataToHTMLComponent(messageData) {
     return div;
 }
 
-
+function generateUsersList(clients){
+    while( chatClientsList.firstChild ){
+        chatClientsList.removeChild( chatClientsList.firstChild );
+    }
+    for(let client of clients){
+        let listItem = document.createElement('li');
+        listItem.innerText = client;
+        chatClientsList.appendChild(listItem);
+    }
+}
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -39,4 +48,22 @@ messageInputForm.addEventListener("submit", function (e) {
 socket.on("chat message", function (messageData) {
   chatMessages.appendChild(convertMessageDataToHTMLComponent(messageData));
   chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+
+socket.on("a client logged in", function (clients) {
+    console.log("a client logged in");
+    generateUsersList(clients);
+});
+
+socket.on("a client logged out", function (clients) {
+    console.log("a client logged out");
+    generateUsersList(clients);
+
+});
+
+socket.on("you logged in", function (uuidv4, clients) {
+    console.log("you logged in");
+    chatterClient = new Chatter(uuidv4);
+    generateUsersList(clients);
 });
