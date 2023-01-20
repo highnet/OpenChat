@@ -3,7 +3,7 @@ let socket = io();
 
 let chatterClient = "";
 
-function convertMessageDataToHTMLComponent(messageData) {
+function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
     let messageBelongsToClient = messageData.uuid == chatterClient.uuid ? false : true;
     let component = `
     <div class="container chat-message ${messageBelongsToClient ? "chat-message-other":"chat-message-mine"}">
@@ -20,10 +20,10 @@ function convertMessageDataToHTMLComponent(messageData) {
     div.innerHTML = component;
     div.classList.add("chat-element");
     
-    return div;
+   chatMessages.appendChild(div);
 }
 
-function generateUsersListHTMLComponent(clients){
+function generateNewChatClientsListHTMLComponentFromClientsList(clients){
     while( chatClientsList.firstChild ){
         chatClientsList.removeChild( chatClientsList.firstChild );
     }
@@ -49,24 +49,24 @@ messageInputForm.addEventListener("submit", function (e) {
 });
 
 socket.on("chat message", function (messageData) {
-  chatMessages.appendChild(convertMessageDataToHTMLComponent(messageData));
+  appendToChatMessagesNewHTMLComponentFromMessageData(messageData);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 
 socket.on("a client logged in", function (clients) {
     console.log("a client logged in");
-    generateUsersListHTMLComponent(clients);
+    generateNewChatClientsListHTMLComponentFromClientsList(clients);
 });
 
 socket.on("a client logged out", function (clients) {
     console.log("a client logged out");
-    generateUsersListHTMLComponent(clients);
+    generateNewChatClientsListHTMLComponentFromClientsList(clients);
 
 });
 
 socket.on("you logged in", function (uuidv4, clients) {
     console.log("you logged in");
     chatterClient = new Chatter(uuidv4);
-    generateUsersListHTMLComponent(clients);
+    generateNewChatClientsListHTMLComponentFromClientsList(clients);
 });
