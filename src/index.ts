@@ -5,7 +5,6 @@ import session from 'express-session';
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
 
-
 // https://greensock.com/
 
 const app = express();
@@ -24,7 +23,7 @@ app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 
 let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 
-let auths: string[] = [];
+let validAuths: string[] = [];
 
 let activeClients: Array<string> = [];
 
@@ -38,7 +37,7 @@ app.get('/', (req: Request, res: Response) =>
   let session = req.session;
   let validAuth: boolean = false;
 
-  for(let auth of auths){
+  for(let auth of validAuths){
     if (session.id == auth){
       validAuth = true;
       break;
@@ -72,7 +71,7 @@ app.post('/login', (req: Request, res: Response) => {
   }
 
   if (validCredentials){
-    auths.push(session.id);
+    validAuths.push(session.id);
     console.log("Redirecting to /");
     res.redirect('/');
   } else {

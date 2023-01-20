@@ -1,38 +1,38 @@
 import { MessageData } from "./messageData.js";
-let _uuid = "";
-let _nickname = "";
-let _messages = [];
+
 
 export class Chatter{
-
+    _uuid = "";
+    _nickname = "";
+    _messages = [];
     constructor(uuidv4){
-        _nickname = this.generateRandomNickname();
-        nicknameInputField.value = _nickname;
-       _uuid = uuidv4;
+        this._nickname = this.generateRandomNickname();
+        nicknameInputField.value = this._nickname;
+       this._uuid = uuidv4;
     }
 
     get nickname(){
-        return _nickname;
+        return this._nickname;
     }
  
     set nickname(value){
-        _nickname = value;
+        this._nickname = value;
     }
 
     get uuid(){
-        return _uuid;
+        return this._uuid;
     }
  
     set uuid(value){
-        _uuid = value;
+        this._uuid = value;
     }
 
     get messages(){
-        return _messages;
+        return this._messages;
     }
  
     set messages(value){
-        _messages = value;
+        this._messages = value;
     }
 
     generateRandomNickname(){
@@ -50,10 +50,10 @@ export class Chatter{
     generateMessageData(text){
         const messageData = new MessageData(
             messageInputField.value, 
-            _nickname,
-            _uuid
+            this._nickname,
+            this._uuid
         );
-        _messages.push(messageData);
+        this._messages.push(messageData);
         return messageData;
     }
 

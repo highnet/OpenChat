@@ -1,56 +1,56 @@
-let _text = "";
-let _nickname = "";
-let _uuid = "";
-let _timeStamp = "";
-
 export class MessageData{
-    
+
+  _text = "";
+  _nickname = "";
+  _uuid = "";
+  _timeStamp = "";
+
   constructor(text, nickname, uuid){
-    _text = text;
-    _nickname = nickname;
-    _uuid = uuid;
-    _timeStamp = Date.now();
+    this._text = text;
+    this._nickname = nickname;
+    this._uuid = uuid;
+    this._timeStamp = Date.now();
   }
 
   get text(){
-    return _text;
+    return this._text;
   }
  
   set text(value){
-    _text = value;
+    this._text = value;
   }
 
   get nickname(){
-    return _nickname;
+    return this._nickname;
   }
  
   set nickname(value){
-    _nickname = value;
+    this._nickname = value;
   }
 
   get timeStamp(){
-    return _timeStamp;
+    return this._timeStamp;
   }
  
   set timeStamp(value){
-    _timeStamp = value;
+    this._timeStamp = value;
   }
 
   get uuid(){
-    return _uuid;
+    return this._uuid;
   }
  
   set uuid(value){
-    _uuid = value;
+    this._uuid = value;
   }
 
 
   toJSON() {
     return {
-      text: _text,
-      nickname: _nickname,
-      uuid: _uuid,
-      timestamp: _timeStamp
+      text: this._text,
+      nickname: this._nickname,
+      uuid: this._uuid,
+      timestamp: this._timeStamp
     };
   }
 
