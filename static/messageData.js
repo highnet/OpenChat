@@ -1,12 +1,14 @@
 let _text = "";
 let _nickname = "";
+let _uuid = "";
 let _timeStamp = "";
 
 export class MessageData{
     
-  constructor(text, nickname){
+  constructor(text, nickname, uuid){
     _text = text;
     _nickname = nickname;
+    _uuid = uuid;
     _timeStamp = Date.now();
   }
 
@@ -34,10 +36,20 @@ export class MessageData{
     _timeStamp = value;
   }
 
+  get uuid(){
+    return _uuid;
+  }
+ 
+  set uuid(value){
+    _uuid = value;
+  }
+
+
   toJSON() {
     return {
       text: _text,
       nickname: _nickname,
+      uuid: _uuid,
       timestamp: _timeStamp
     };
   }

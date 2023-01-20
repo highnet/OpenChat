@@ -1,7 +1,11 @@
 import { Chatter } from "./chatter.js";
+let socket = io();
+
+let chatterClient = new Chatter();
 
 function convertMessageDataToHTMLComponent(messageData) {
-    let other = nicknameInputField.value == messageData.nickname ? false:true;
+
+    let other = messageData.uuid == chatterClient.uuid ? false:true;
     let component = `
     <div class="container chat-message ${other ? "chat-message-other":"chat-message-mine"}">
         <span class="container chat-message-chat-bubble"></span>
@@ -20,9 +24,7 @@ function convertMessageDataToHTMLComponent(messageData) {
     return div;
 }
 
-let socket = io();
 
-let chatterClient = new Chatter();
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
