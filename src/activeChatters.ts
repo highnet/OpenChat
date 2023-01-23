@@ -45,14 +45,12 @@ export class ActiveChatters {
 
     public RemoveUser(newClientUserUniqueID: string, newNickname: string):void {
     let index = this._activeUuids.indexOf(newClientUserUniqueID);
-    console.log("index of ", newClientUserUniqueID, "is: ", index);
     if (index !== -1){
       this._activeUuids.splice(index, 1);
     }
     index = this._activeNicknames.indexOf(newNickname);
-    console.log("index of ", newNickname, "is: ", index);
     if (index !== -1){
       this._activeNicknames.splice(index, 1);
     }
-    }
+}
 }

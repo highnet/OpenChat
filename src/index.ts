@@ -96,11 +96,13 @@ app.post('/login', (req: Request, res: Response) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+
   let newClientUserUniqueID = uuidv4();
   let newNickname = generateRandomNickname();
   activeChatters.GenerateNewUser(newClientUserUniqueID, newNickname);
   console.log(activeChatters.ActiveUuids);
   console.log(activeChatters.ActiveNicknames);
+  
   socket.emit("you logged in", newClientUserUniqueID, newNickname, activeChatters);
   socket.broadcast.emit("a client logged in", activeChatters);
   
