@@ -16,6 +16,11 @@ enum ServerEmissions{
   CHAT_MESSAGE = "chat message"
 }
 
+enum ServerEvents{
+  CONNECTION = "connection",
+  DISCONNECT = "disconnect"
+}
+
 const app = express();
 app.set('trust proxy', 1)
 
@@ -83,14 +88,14 @@ app.post('/login', (req: Request, res: Response) => {
 
 });
 
-io.on('connection', (socket) => {
+io.on(ServerEvents.CONNECTION, (socket) => {
   
   let newUser = activeUsers.GenerateNewUser();
   
   socket.emit(ServerEmissions.YOU_LOGGED_IN, newUser.Uuid, newUser.Nickname, activeUsers);
   socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_IN, activeUsers);
   
-  socket.on('disconnect', () => {
+  socket.on(ServerEvents.DISCONNECT, () => {
 
     activeUsers.RemoveOldUser(newUser);
     socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_OUT, activeUsers);
