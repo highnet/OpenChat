@@ -4,6 +4,7 @@ import path from 'path';
 import session from 'express-session';
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
+import { ActiveChatters } from './activeChatters';
 
 // https://greensock.com/
 
@@ -27,8 +28,9 @@ let validAuths: string[] = [];
 
 let activeClients: Array<string> = [];
 let activeNicknames: Array<string> = [];
+let activeChatters = new ActiveChatters();
     
-    function generateRandomNickname(){
+function generateRandomNickname(){
         let result = "";
         const adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
         const subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
@@ -38,7 +40,7 @@ let activeNicknames: Array<string> = [];
         result += randomSubjective;
         result += Math.floor(Math.random() * 90 + 10); 
         return result; 
-    }
+}
     
 
 import http from 'http';
@@ -98,21 +100,23 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   let newClientUserUniqueID = uuidv4();
   let newNickname = generateRandomNickname();
+  activeChatters.GenerateNewUser(newClientUserUniqueID, newNickname);
   activeClients.push(newClientUserUniqueID);
   activeNicknames.push(newNickname);
-  console.log(activeClients);
-  console.log(activeNicknames);
+  console.log(activeChatters.ActiveUuids);
+  console.log(activeChatters.ActiveNicknames);
   socket.emit("you logged in", newClientUserUniqueID, newNickname, activeClients, activeNicknames);
   socket.broadcast.emit("a client logged in", activeClients, activeNicknames);
   
   socket.on('disconnect', () => {
+
+    activeChatters.RemoveUser(newClientUserUniqueID,newNickname);
+    
     let index = activeClients.indexOf(newClientUserUniqueID);
-    console.log("index of ", newClientUserUniqueID, "is: ", index);
     if (index !== -1){
       activeClients.splice(index, 1);
     }
     index = activeNicknames.indexOf(newNickname);
-    console.log("index of ", newNickname, "is: ", index);
     if (index !== -1){
       activeNicknames.splice(index, 1);
     }
