@@ -9,6 +9,13 @@ import { Users } from './users';
 
 // https://greensock.com/
 
+enum ServerEmissions{
+  YOU_LOGGED_IN = "you logged in",
+  A_CLIENT_LOGGED_IN = "a client logged in",
+  A_CLIENT_LOGGED_OUT = "a client logged out",
+  CHAT_MESSAGE = "chat message"
+}
+
 const app = express();
 app.set('trust proxy', 1)
 
@@ -23,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 
-let validLogins = JSON.parse(fs.readFileSync('users.json','utf8'));
+let validLogins = JSON.parse(fs.readFileSync('logins.json','utf8'));
 let validAuths: string[] = [];
 let activeUsers = new Users();
 let server = http.createServer(app);
@@ -69,7 +76,6 @@ app.post('/login', (req: Request, res: Response) => {
 
   if (validCredentials){
     validAuths.push(session.id);
-    console.log("Redirecting to /");
     res.redirect('/');
   } else {
     res.redirect('/login?err=LOGIN_INCORRECT')
@@ -78,25 +84,21 @@ app.post('/login', (req: Request, res: Response) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
   
   let newUser = activeUsers.GenerateNewUser();
-
-  console.log(newUser.Uuid);
-  console.log(newUser.Nickname);
   
-  socket.emit("you logged in", newUser.Uuid, newUser.Nickname, activeUsers);
-  socket.broadcast.emit("a client logged in", activeUsers);
+  socket.emit(ServerEmissions.YOU_LOGGED_IN, newUser.Uuid, newUser.Nickname, activeUsers);
+  socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_IN, activeUsers);
   
   socket.on('disconnect', () => {
 
     activeUsers.RemoveOldUser(newUser);
-    socket.broadcast.emit("a client logged out", activeUsers);
+    socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_OUT, activeUsers);
 
   });
 
-  socket.on('chat message', (msg) => {
-      io.emit('chat message', msg);
+  socket.on(ServerEmissions.CHAT_MESSAGE, (msg) => {
+      io.emit(ServerEmissions.CHAT_MESSAGE, msg);
       console.log(msg);
   });
 });

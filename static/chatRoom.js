@@ -1,4 +1,12 @@
 import { Chatter } from "./chatter.js";
+
+const ServerEmissions = {
+  YOU_LOGGED_IN : "you logged in",
+  A_CLIENT_LOGGED_IN : "a client logged in",
+  A_CLIENT_LOGGED_OUT : "a client logged out",
+  CHAT_MESSAGE : "chat message"
+}
+
 let socket = io();
 
 let chatterClient = "";
@@ -52,30 +60,27 @@ messageInputForm.addEventListener("submit", function (e) {
   let messageData = chatterClient.generateMessageData(messageInputField.value);
 
   if (messageData.text != "") {
-    socket.emit("chat message", messageData);
+    socket.emit(ServerEmissions.CHAT_MESSAGE, messageData);
     messageInputField.value = "";
     }
 });
 
-socket.on("chat message", function (messageData) {
+socket.on(ServerEmissions.CHAT_MESSAGE, function (messageData) {
   appendToChatMessagesNewHTMLComponentFromMessageData(messageData);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 
-socket.on("a client logged in", function (users) {
-    console.log("a client logged in");
+socket.on(ServerEmissions.A_CLIENT_LOGGED_IN, function (users) {
     appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 });
 
-socket.on("a client logged out", function (users) {
-    console.log("a client logged out");
+socket.on(ServerEmissions.A_CLIENT_LOGGED_OUT, function (users) {
     appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 
 });
 
-socket.on("you logged in", function (uuidv4, nickname, users) {
-    console.log("you logged in");
+socket.on(ServerEmissions.YOU_LOGGED_IN, function (uuidv4, nickname, users) {
     chatterClient = new Chatter(uuidv4, nickname);
     appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 });
