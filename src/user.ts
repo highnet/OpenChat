@@ -25,8 +25,6 @@ export class User{
         result += randomAdjective;
         result += randomSubjective;
         result += Math.floor(Math.random() * 90 + 10); 
-
-
         return result; 
     }
 

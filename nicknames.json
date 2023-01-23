@@ -1,5 +1,6 @@
 {
-  "firstNames": ["Aayla", "Abigail", "Action", "Baby",
+  "firstNames": [
+    "Aayla", "Abigail", "Action", "Baby",
    "Bambi", "Barney", "C-", "Cake",
     "Candie", "Dad", "Dancey", 
     "Darth", "Ed", "Edd", 
@@ -18,6 +19,26 @@
     "Vambre", "Victor", "Valentino", "Wall",
     "Wallabee", "White", "Xan", "Xochi",
     "Yellow", "Yogi", "Young", "Zangya",
-    "Zombozo"],
-  "lastNames": ["Secura", "Lincoln", "Hank", "Lyon", "Adrenalini", "Schaeffer", "Trout", "Tano", "Sleech", "Onuki", "Boys", "Girls", "Gillis", "DeMayo", "Johnson", "Grandma", "Otter", "Chick", "Offee", "Bling", "Cat", "Bluff", "Tennyson", "Factor", "Barrett", "Beaver", "Baby", "Squid", "Diamond", "Fett", "Maul", "3P0", "Vader", "Skywalker", "Ganoush", "Florist", "Skunk", "Brogan", "Cow", "Dink", "Sharkowski", "Squirrel", "Huggles", "Bear", "Chipmunk", "Dickson", "McMuesli", "Keezhekoni", "Hoseynose", "Cooper", "Wendle", "Breaker", "Daniels", "Williams", "Watterson", "Pong", "Toadblatt", "Reynolds", "Turnbull", "Dee", "Smith", "Doo", "Dad", "Mom", "Hardly", "Barber", "Clark", "Fox", "Hi", "Robotnik"]
+    "Zombozo"
+    ],
+  "lastNames": [
+    "Secura", "Lincoln", "Hank",
+    "Lyon", "Adrenalini", "Schaeffer", "Trout",
+    "Tano", "Sleech", "Onuki", "Boys",
+    "Girls", "Gillis", "DeMayo", "Johnson",
+    "Grandma", "Otter", "Chick", "Offee", 
+    "Bling", "Cat", "Bluff", "Tennyson",
+    "Factor", "Barrett", "Beaver", "Baby",
+    "Squid", "Diamond", "Fett", "Maul",
+    "3P0", "Vader", "Skywalker", "Ganoush", 
+    "Florist", "Skunk", "Brogan", "Cow",
+    "Dink", "Sharkowski", "Squirrel", "Huggles",
+    "Bear", "Chipmunk", "Dickson", "McMuesli", 
+    "Keezhekoni", "Hoseynose", "Cooper", "Wendle",
+    "Breaker", "Daniels", "Williams", "Watterson",
+    "Pong", "Toadblatt", "Reynolds", "Turnbull",
+    "Dee", "Smith", "Doo", "Dad",
+    "Mom", "Hardly", "Barber", "Clark",
+    "Fox", "Hi", "Robotnik"
+    ]
 }
