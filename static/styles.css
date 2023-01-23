@@ -343,11 +343,11 @@ input {
 }
 
 .chat-clients-toolbar-clients-list > li:nth-child(even) {
-    background: rgba(131, 58, 180, 0);
+    background: rgba(253, 29, 29, 0.1);
 }
 
 .chat-clients-toolbar-clients-list>li:nth-child(odd) {
-   background: rgba(253, 29, 29, 0)
+    background: rgba(252, 176, 69, 0.1);
 }
 
 
