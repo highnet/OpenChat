@@ -4,7 +4,7 @@ import path from 'path';
 import session from 'express-session';
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
-import { ActiveChatters } from './activeChatters';
+import { Users } from './users';
 
 // https://greensock.com/
 
@@ -22,11 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 
-let users = JSON.parse(fs.readFileSync('users.json','utf8'));
-
+let validLogins = JSON.parse(fs.readFileSync('users.json','utf8'));
 let validAuths: string[] = [];
 
-let activeChatters = new ActiveChatters();
+let activeUsers = new Users();
     
 function generateRandomNickname(){
         let result = "";
@@ -77,7 +76,7 @@ app.post('/login', (req: Request, res: Response) => {
   let session = req.session;
 
   let validCredentials: boolean = false;
-  for(let user of users){
+  for(let user of validLogins){
     if (usernameInput == user.username && passwordInput == user.password){
       validCredentials = true;
       break;
@@ -99,19 +98,20 @@ io.on('connection', (socket) => {
 
   let newClientUserUniqueID = uuidv4();
   let newNickname = generateRandomNickname();
-  activeChatters.GenerateNewUser(newClientUserUniqueID, newNickname);
-  console.log(activeChatters.ActiveUuids);
-  console.log(activeChatters.ActiveNicknames);
+  activeUsers.GenerateNewUser(newClientUserUniqueID, newNickname);
   
-  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeChatters);
-  socket.broadcast.emit("a client logged in", activeChatters);
+  console.log(activeUsers.Uuids);
+  console.log(activeUsers.Nicknames);
+  
+  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeUsers);
+  socket.broadcast.emit("a client logged in", activeUsers);
   
   socket.on('disconnect', () => {
 
-    activeChatters.RemoveUser(newClientUserUniqueID,newNickname);
+    activeUsers.RemoveUser(newClientUserUniqueID,newNickname);
   
 
-    socket.broadcast.emit("a client logged out", activeChatters);
+    socket.broadcast.emit("a client logged out", activeUsers);
   });
 
   socket.on('chat message', (msg) => {

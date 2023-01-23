@@ -24,22 +24,22 @@ function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
 }
 
 function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters){
-    console.log(chatters._activeUuids);
-    console.log(chatters._activeNicknames);
+    console.log(chatters._Uuids);
+    console.log(chatters._Nicknames);
 
 
     while( chatClientsList.firstChild ){
         chatClientsList.removeChild( chatClientsList.firstChild );
     }
     let i = 0;
-    for(let userID of chatters._activeUuids){
+    for(let userID of chatters._Uuids){
         let listItem = document.createElement('li');
         let paragraph = document.createElement('p');
         if (chatterClient.uuid == userID){
-            paragraph.appendChild(document.createTextNode(chatters._activeNicknames[i] + " (You)"));
+            paragraph.appendChild(document.createTextNode(chatters._Nicknames[i] + " (You)"));
             paragraph.classList.add("chat-clients-toolbar-clients-list-username-text-mine")
         } else {
-            paragraph.appendChild(document.createTextNode(chatters._activeNicknames[i]));
+            paragraph.appendChild(document.createTextNode(chatters._Nicknames[i]));
         }
         listItem.appendChild(paragraph);
 
