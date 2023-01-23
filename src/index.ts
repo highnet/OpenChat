@@ -26,8 +26,6 @@ let users = JSON.parse(fs.readFileSync('users.json','utf8'));
 
 let validAuths: string[] = [];
 
-let activeClients: Array<string> = [];
-let activeNicknames: Array<string> = [];
 let activeChatters = new ActiveChatters();
     
 function generateRandomNickname(){
@@ -101,27 +99,17 @@ io.on('connection', (socket) => {
   let newClientUserUniqueID = uuidv4();
   let newNickname = generateRandomNickname();
   activeChatters.GenerateNewUser(newClientUserUniqueID, newNickname);
-  activeClients.push(newClientUserUniqueID);
-  activeNicknames.push(newNickname);
   console.log(activeChatters.ActiveUuids);
   console.log(activeChatters.ActiveNicknames);
-  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeClients, activeNicknames);
-  socket.broadcast.emit("a client logged in", activeClients, activeNicknames);
+  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeChatters);
+  socket.broadcast.emit("a client logged in", activeChatters);
   
   socket.on('disconnect', () => {
 
     activeChatters.RemoveUser(newClientUserUniqueID,newNickname);
-    
-    let index = activeClients.indexOf(newClientUserUniqueID);
-    if (index !== -1){
-      activeClients.splice(index, 1);
-    }
-    index = activeNicknames.indexOf(newNickname);
-    if (index !== -1){
-      activeNicknames.splice(index, 1);
-    }
+  
 
-    socket.broadcast.emit("a client logged out", activeClients, activeNicknames);
+    socket.broadcast.emit("a client logged out", activeChatters);
   });
 
   socket.on('chat message', (msg) => {
