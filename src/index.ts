@@ -66,8 +66,8 @@ let validLogins = JSON.parse(
 )); // cache the JSON file containing the list of valid logins
 let validAuths: string[] = []; // initialize the list used to cache valid auth tokens
 let connectedUsers = new Users(); // initialize the object used to cache a list of users connected to the server
-let server = http.createServer(app);
-let io = new Server(server);
+let server = http.createServer(app); // create an http server
+let io = new Server(server); // create a socket.io server
 
 //#endregion Global
 
@@ -77,8 +77,9 @@ let io = new Server(server);
 app.get('/', (req: Request, res: Response) => 
 {
   let session = req.session;
-  let validAuth: boolean = false;
 
+  // Validate the session
+  let validAuth: boolean = false;
   for(let auth of validAuths){
     if (session.id == auth){
       validAuth = true;
@@ -86,6 +87,7 @@ app.get('/', (req: Request, res: Response) =>
     }
   }
 
+  // Redirect the user according to the validation's result
   if (validAuth){
     res.sendFile(path.resolve(__dirname, '../views/index.html'));
   } else {
@@ -100,8 +102,12 @@ app.get('/login', (req: Request, res: Response) => {
 });
 
 app.post('/login', (req: Request, res: Response) => {
+  
+  // Query the user's login credentials
   let usernameInput = req.body.username;
   let passwordInput = req.body.password;
+
+  // Validate the user's credentials
   let session = req.session;
 
   let validCredentials: boolean = false;
@@ -112,6 +118,7 @@ app.post('/login', (req: Request, res: Response) => {
     }
   }
 
+  // Redirect the user according to the validation's results
   if (validCredentials){
     validAuths.push(session.id);
     res.redirect('/');
@@ -126,9 +133,20 @@ app.post('/login', (req: Request, res: Response) => {
 //#region Socket
 io.on(ServerEvents.CONNECTION, (socket) => {
   
+  // Generate a new server side user
   let connectedUser = connectedUsers.GenerateNewUser();
   
-  socket.emit(ServerEmissions.YOU_LOGGED_IN, connectedUser.Uuid, connectedUser.Nickname, connectedUsers);
+  /*
+   Emit a YOU_LOGGED_IN emisssion to the user, including their newly
+   assigned uuid, nickname, and a list of all other connected users
+  */
+  socket.emit(
+    ServerEmissions.YOU_LOGGED_IN,
+    connectedUser.Uuid,
+    connectedUser.Nickname,
+    connectedUsers
+  );
+
   socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_IN, connectedUsers);
   
   socket.on(ServerEvents.DISCONNECT, () => {
