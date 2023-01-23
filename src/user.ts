@@ -20,11 +20,11 @@ export class User{
         ));
         const firstNames = nicknames.firstNames;
         const lastNames = nicknames.lastNames;
-        let randomAdjective = firstNames[Math.floor(Math.random()*firstNames.length)];
-        let randomSubjective = lastNames[Math.floor(Math.random()*lastNames.length)];
-        result += randomAdjective;
-        result += randomSubjective;
-        result += Math.floor(Math.random() * 90 + 10); 
+        let randomFirstName = firstNames[Math.floor(Math.random()*firstNames.length)];
+        let randomSecondName = lastNames[Math.floor(Math.random()*lastNames.length)];
+        result += randomFirstName +
+            randomSecondName +
+            Math.floor(Math.random() * 90 + 10);
         return result; 
     }
 
