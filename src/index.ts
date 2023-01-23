@@ -3,7 +3,8 @@ import express, { Express, Request, Response } from 'express';
 import path from 'path';
 import session from 'express-session';
 import fs from "fs";
-import { v4 as uuidv4 } from 'uuid';
+import http from 'http';
+import { Server } from "socket.io";
 import { Users } from './users';
 
 // https://greensock.com/
@@ -24,25 +25,8 @@ app.use('/static', express.static(path.join(__dirname, '..', 'static')));
 
 let validLogins = JSON.parse(fs.readFileSync('users.json','utf8'));
 let validAuths: string[] = [];
-
 let activeUsers = new Users();
-    
-function generateRandomNickname(){
-        let result = "";
-        const adjectives = ["Dopey", "Doc", "Sneezy", "Bashful", "Sleepy", "Grumpy", "Happy"];
-        const subjectives = ["Car", "Dog", "House", "Moon", "Water", "Table", "Trouble"];
-        let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
-        let randomSubjective = subjectives[Math.floor(Math.random()*subjectives.length)];
-        result += randomAdjective;
-        result += randomSubjective;
-        result += Math.floor(Math.random() * 90 + 10); 
-        return result; 
-}
-    
-
-import http from 'http';
 let server = http.createServer(app);
-import { Server } from "socket.io";
 let io = new Server(server);
 
 app.get('/', (req: Request, res: Response) => 
@@ -96,7 +80,7 @@ app.post('/login', (req: Request, res: Response) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
   
-  let newUser = activeUsers.GenNewUser();
+  let newUser = activeUsers.GenerateNewUser();
 
   console.log(newUser.Uuid);
   console.log(newUser.Nickname);
@@ -106,9 +90,9 @@ io.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
 
-    activeUsers.RemoveUser(newUser);
+    activeUsers.RemoveOldUser(newUser);
     socket.broadcast.emit("a client logged out", activeUsers);
-    
+
   });
 
   socket.on('chat message', (msg) => {

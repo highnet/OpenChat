@@ -29,8 +29,6 @@ function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters){
         chatClientsList.removeChild( chatClientsList.firstChild );
     }
 
-
-
     for(let chatter of chatters._Users){
         let listItem = document.createElement('li');
         let paragraph = document.createElement('p');
@@ -65,19 +63,19 @@ socket.on("chat message", function (messageData) {
 });
 
 
-socket.on("a client logged in", function (chatters) {
+socket.on("a client logged in", function (users) {
     console.log("a client logged in");
-    appendToNewChatClientsListHTMLComponentsFromClientsList(chatters);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 });
 
-socket.on("a client logged out", function (chatters) {
+socket.on("a client logged out", function (users) {
     console.log("a client logged out");
-    appendToNewChatClientsListHTMLComponentsFromClientsList(chatters);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 
 });
 
-socket.on("you logged in", function (uuidv4, nickname, chatters) {
+socket.on("you logged in", function (uuidv4, nickname, users) {
     console.log("you logged in");
-    chatterClient = new Chatter(uuidv4,nickname);
-    appendToNewChatClientsListHTMLComponentsFromClientsList(chatters);
+    chatterClient = new Chatter(uuidv4, nickname);
+    appendToNewChatClientsListHTMLComponentsFromClientsList(users);
 });

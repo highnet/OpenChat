@@ -18,13 +18,13 @@ export class Users {
     }
 
 
-    public GenNewUser(): User {
+    public GenerateNewUser(): User {
         let newUser = new User();
         this._Users.push(newUser);
         return newUser;
     }
 
-    public RemoveUser(user:User):void {
+    public RemoveOldUser(user:User):void {
         let index = this._Users.indexOf(user);
         if (index !== -1){
         this._Users.splice(index, 1);
