@@ -95,23 +95,20 @@ app.post('/login', (req: Request, res: Response) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  
+  let newUser = activeUsers.GenNewUser();
 
-  let newClientUserUniqueID = uuidv4();
-  let newNickname = generateRandomNickname();
-  activeUsers.GenerateNewUser(newClientUserUniqueID, newNickname);
+  console.log(newUser.Uuid);
+  console.log(newUser.Nickname);
   
-  console.log(activeUsers.Uuids);
-  console.log(activeUsers.Nicknames);
-  
-  socket.emit("you logged in", newClientUserUniqueID, newNickname, activeUsers);
+  socket.emit("you logged in", newUser.Uuid, newUser.Nickname, activeUsers);
   socket.broadcast.emit("a client logged in", activeUsers);
   
   socket.on('disconnect', () => {
 
-    activeUsers.RemoveUser(newClientUserUniqueID,newNickname);
-  
-
+    activeUsers.RemoveUser(newUser);
     socket.broadcast.emit("a client logged out", activeUsers);
+    
   });
 
   socket.on('chat message', (msg) => {
