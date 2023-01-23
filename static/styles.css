@@ -43,7 +43,7 @@ input {
 .container { 
     margin: 0 auto;
     justify-content: center;
-    border: 1px solid lightgray;
+    border: 0px solid lightgray;
 }
 
     
@@ -128,9 +128,8 @@ input {
     height: 64vh;
     mask-image: linear-gradient(to top, black 80%, transparent 100%);
     width: 100%;
-    background-image: url(/static/chatbackground_2.svg);
-    background-size: cover;
-
+    margin-left: 8px;
+    margin-right: 4px;
 }
 
 .chat-messages{
@@ -150,7 +149,7 @@ input {
     display: flex;
     margin-bottom: 1rem;
     align-items: center;
-    --chat-opacity: 0.8;
+    --chat-opacity: 0.7;
     max-width: 80%;
     max-height: 200px;
     margin-top: 1px;
@@ -213,7 +212,7 @@ input {
     direction: rtl;
     margin-right: 0px;
     padding-left: 12px;
-    filter: sepia(10%);
+    filter: sepia(5%);
     border-bottom-right-radius: 2px;
 
 }
@@ -320,7 +319,8 @@ input {
     scroll-behavior: smooth;
     overflow-x: hidden;
     max-height: 100%;
-    background-image: url(/static/chatbackground_0.svg);
+    border: 1px solid lightblue;
+    background: url(/static/chatbackgroundusers_0.svg);
 }
 
 .chat-clients-toolbar-clients-list{
@@ -330,16 +330,27 @@ input {
 
 .chat-house{
     max-width: 1080px;
-    padding-right: 10px;
-    padding-left: 10px;
     display: flex;
+    background-image: url(/static/chatbackground_2.svg);
+    background-size: cover;
+    border: 1px solid lightblue;
 }
 
 .chat-clients-toolbar-clients-list>li {
-    margin-bottom: 5px;
     text-align: center;
+    color: white;
+    font-size: 1.6rem;
 }
+
+.chat-clients-toolbar-clients-list > li:nth-child(even) {
+    background: rgba(131, 58, 180, 0);
+}
+
+.chat-clients-toolbar-clients-list>li:nth-child(odd) {
+   background: rgba(253, 29, 29, 0)
+}
+
+
 .chat-clients-toolbar-clients-list-username-text-mine{
-    font-size: 1.1rem;
     font-weight: bold;
 }

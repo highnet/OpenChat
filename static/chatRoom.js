@@ -39,15 +39,15 @@ function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters){
 
     for(let chatter of chatters._Users){
         let listItem = document.createElement('li');
-        let paragraph = document.createElement('p');
+        let text = document.createElement('div');
         
         if (chatter._Uuid == chatterClient.uuid){
-            paragraph.appendChild(document.createTextNode(chatter._Nickname + " (You)"));
-            paragraph.classList.add("chat-clients-toolbar-clients-list-username-text-mine")
+            text.appendChild(document.createTextNode(chatter._Nickname + " (You)"));
+            text.classList.add("chat-clients-toolbar-clients-list-username-text-mine")
         } else {
-            paragraph.appendChild(document.createTextNode(chatter._Nickname));
+            text.appendChild(document.createTextNode(chatter._Nickname));
         }
-        listItem.appendChild(paragraph);
+        listItem.appendChild(text);
 
         chatClientsList.appendChild(listItem);
     }
