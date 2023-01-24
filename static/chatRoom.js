@@ -13,16 +13,16 @@ let chatterClient = "";
 
 function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
   let messageBelongsToClient =
-    messageData.uuid == chatterClient.uuid ? false : true;
+    chatterClient.messageBelongsToClient(messageData);
   let component = `
     <div class="container chat-message ${
-      messageBelongsToClient ? "chat-message-other" : "chat-message-mine"
+      messageBelongsToClient ? "chat-message-mine" : "chat-message-other"
     }">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname ${
           messageBelongsToClient
-            ? "chat-message-chat-nickname-other"
-            : "chat-message-chat-nickname-mine"
+            ? "chat-message-chat-nickname-mine"
+            : "chat-message-chat-nickname-other"
         }">
             ${messageData.nickname + ":"} 
         </p>

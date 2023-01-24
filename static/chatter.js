@@ -42,4 +42,8 @@ export class Chatter {
     this._messages.push(messageData);
     return messageData;
   }
+
+  messageBelongsToClient(messageData) {
+    return messageData.uuid == this.uuid;
+  }
 }
