@@ -1,3 +1,5 @@
+/* Variable */
+
 :root {
   --color-primary: rgba(131, 58, 180, 1);
   --color-accent: rgba(252, 176, 69, 1);
@@ -7,6 +9,8 @@
   --color-gradient-middle: #fd1d1d;
   --color-gradient-end: #fcb045;
 }
+
+/* Typography */
 
 html {
   font-size: 62.5%;
@@ -27,22 +31,15 @@ p {
   color: var(--color-paragraphs);
 }
 
-input {
-  margin-bottom: 16px;
-  border-radius: 4%;
-  color: var(--color-primary);
-  font-size: 2rem;
-  outline: 0;
-  justify-content: center;
-  align-content: center;
-  padding: 1rem 1rem;
-}
+/* Container */
 
 .container {
   margin: 0 auto;
   justify-content: center;
   border: 0px solid lightgray;
 }
+
+/* Grid */
 
 .grid {
   display: grid;
@@ -56,35 +53,20 @@ input {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.logo {
-  width: 360px;
+/* Input */
+
+input {
+  margin-bottom: 16px;
+  border-radius: 4%;
+  color: var(--color-primary);
+  font-size: 2rem;
+  outline: 0;
+  justify-content: center;
+  align-content: center;
+  padding: 1rem 1rem;
 }
 
-.logo-small {
-  width: 156px;
-}
-
-.logo-tiny {
-  width: 128px;
-}
-
-.logo-tiny:hover {
-  rotate: 3600deg;
-  transition: rotate 5s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.hint {
-  font-weight: bold;
-  text-align: center;
-}
-
-.hint-username {
-  font-size: 3rem;
-}
-
-.hint-password {
-  font-size: 2.5rem;
-}
+/* Buttons */
 
 .btn {
   justify-self: center;
@@ -113,6 +95,70 @@ input {
   width: 4rem;
   height: 4rem;
 }
+
+.btn-submit {
+  justify-self: left;
+  align-self: normal;
+}
+
+/* Logo */
+
+.logo {
+  width: 360px;
+}
+
+.logo-small {
+  width: 156px;
+}
+
+.logo-tiny {
+  width: 128px;
+}
+
+.logo-tiny:hover {
+  rotate: 3600deg;
+  transition: rotate 5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Navbar */
+
+.navbar {
+  background-color: rgba(100, 100, 100, 25%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Under Constrution */
+
+.underconstruction {
+  width: 100%;
+  height: 32px;
+  object-fit: cover;
+  position: fixed;
+  z-index: 999;
+  opacity: 66%;
+}
+
+/* Login */
+.login {
+  margin: 0 10rem 0 10rem;
+}
+
+.hint {
+  font-weight: bold;
+  text-align: center;
+}
+
+.hint-username {
+  font-size: 3rem;
+}
+
+.hint-password {
+  font-size: 2.5rem;
+}
+
+/* Chatting */
 
 .chat-room {
   position: relative;
@@ -248,26 +294,6 @@ input {
   border: 2px solid greenyellow;
 }
 
-.login {
-  margin: 0 10rem 0 10rem;
-}
-
-.navbar {
-  background-color: rgba(100, 100, 100, 25%);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.underconstruction {
-  width: 100%;
-  height: 32px;
-  object-fit: cover;
-  position: fixed;
-  z-index: 999;
-  opacity: 66%;
-}
-
 .chat-input-toolbar {
   width: 500px;
   height: 10vh;
@@ -279,11 +305,6 @@ input {
   min-width: 400px;
   min-height: 50px;
   display: flex;
-}
-
-.btn-submit {
-  justify-self: left;
-  align-self: normal;
 }
 
 .chat-input-toolbar-inputfield {
@@ -331,7 +352,7 @@ input {
 
 .chat-clients-toolbar-clients-list > li {
   text-align: center;
-  color: white;
+  color: var(--color-accent);
   font-size: 1.3rem;
 }
 
@@ -341,6 +362,10 @@ input {
 
 .chat-clients-toolbar-clients-list > li:nth-child(odd) {
   background: rgba(252, 176, 69, 0.1);
+}
+
+.chat-clients-toolbar-clients-list-nickname-background-mine {
+  background: rgba(0, 0, 0, 0.15) !important;
 }
 
 .chat-clients-toolbar-clients-list-username-text-mine {

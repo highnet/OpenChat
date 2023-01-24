@@ -1,3 +1,10 @@
+/*
+  The server side Credential class represents a user's login
+  information, including a username and password, stored as
+  a plain text string.
+  Upon a login request, a Credential object is created and
+  passed onto a CredentialValidator object for validation.
+*/
 export class Credential {
   private _username: string;
   private _password: string;

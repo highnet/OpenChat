@@ -42,6 +42,7 @@ function generateChatClientsListHTMLComponent(chatters) {
     let listItem = document.createElement("li");
     let listItemText = document.createElement("div");
     if (chatterClient.isSameChatter(chatter._uuid)) {
+      listItem.classList.add("chat-clients-toolbar-clients-list-nickname-background-mine");
       listItemText.classList.add("chat-clients-toolbar-clients-list-username-text-mine");
     }
     listItemText.appendChild(document.createTextNode(chatter._nickname));
