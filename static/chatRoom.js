@@ -11,7 +11,7 @@ let socket = io();
 
 let chatterClient = "";
 
-function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
+function generateChatMessageHTMLComponent(messageData) {
   let messageBelongsToClient =
     chatterClient.messageBelongsToClient(messageData);
   let component = `
@@ -35,14 +35,18 @@ function appendToChatMessagesNewHTMLComponentFromMessageData(messageData) {
   div.innerHTML = component;
   div.classList.add("chat-element");
 
-  chatMessages.appendChild(div);
+  return div;
 }
 
-function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters) {
+function resetChatClientsList() {
   while (chatClientsList.firstChild) {
     chatClientsList.removeChild(chatClientsList.firstChild);
   }
+}
 
+function generateChatClientsListHTMLComponent(chatters) {
+  resetChatClientsList();
+  let component = document.createDocumentFragment();
   for (let chatter of chatters._users) {
     let listItem = document.createElement("li");
     let text = document.createElement("div");
@@ -57,8 +61,9 @@ function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters) {
     }
     listItem.appendChild(text);
 
-    chatClientsList.appendChild(listItem);
+    component.appendChild(listItem);
   }
+  return component;
 }
 
 messageInputForm.addEventListener("submit", function (e) {
@@ -73,19 +78,19 @@ messageInputForm.addEventListener("submit", function (e) {
 });
 
 socket.on(ServerEmissions.CHAT_MESSAGE, function (messageData) {
-  appendToChatMessagesNewHTMLComponentFromMessageData(messageData);
+  chatMessages.appendChild(generateChatMessageHTMLComponent(messageData));
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 socket.on(ServerEmissions.A_CLIENT_LOGGED_IN, function (users) {
-  appendToNewChatClientsListHTMLComponentsFromClientsList(users);
+  chatClientsList.appendChild(generateChatClientsListHTMLComponent(users));
 });
 
 socket.on(ServerEmissions.A_CLIENT_LOGGED_OUT, function (users) {
-  appendToNewChatClientsListHTMLComponentsFromClientsList(users);
+  chatClientsList.appendChild(generateChatClientsListHTMLComponent(users));
 });
 
 socket.on(ServerEmissions.YOU_LOGGED_IN, function (uuidv4, nickname, users) {
   chatterClient = new Chatter(uuidv4, nickname);
-  appendToNewChatClientsListHTMLComponentsFromClientsList(users);
+  chatClientsList.appendChild(generateChatClientsListHTMLComponent(users));
 });

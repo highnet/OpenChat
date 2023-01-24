@@ -307,8 +307,8 @@ input {
 
 .chat-clients-toolbar {
   margin: 0px 0px;
-  max-width: 150px;
-  min-width: 125px;
+  max-width: 200px;
+  min-width: 150px;
   height: 64vh;
   overflow: scroll;
   scroll-behavior: smooth;
