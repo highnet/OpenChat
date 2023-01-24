@@ -12,18 +12,11 @@ let socket = io();
 let chatterClient = "";
 
 function generateChatMessageHTMLComponent(messageData) {
-  let messageBelongsToClient =
-    chatterClient.messageBelongsToClient(messageData);
+  let messageBelongsToClient = chatterClient.messageBelongsToClient(messageData);
   let component = `
-    <div class="container chat-message ${
-      messageBelongsToClient ? "chat-message-mine" : "chat-message-other"
-    }">
+    <div class="container chat-message ${messageBelongsToClient ? "chat-message-mine" : "chat-message-other"}">
         <span class="container chat-message-chat-bubble"></span>
-        <p class="container chat-message-chat-nickname ${
-          messageBelongsToClient
-            ? "chat-message-chat-nickname-mine"
-            : "chat-message-chat-nickname-other"
-        }">
+        <p class="container chat-message-chat-nickname ${messageBelongsToClient ? "chat-message-chat-nickname-mine" : "chat-message-chat-nickname-other"}">
             ${messageData.nickname + ":"} 
         </p>
         <p class="container chat-message-chat-text">
@@ -49,17 +42,15 @@ function generateChatClientsListHTMLComponent(chatters) {
   let component = document.createDocumentFragment();
   for (let chatter of chatters._users) {
     let listItem = document.createElement("li");
-    let text = document.createElement("div");
+    let listItemText = document.createElement("div");
 
     if (chatter._uuid == chatterClient.uuid) {
-      text.appendChild(document.createTextNode(chatter._nickname + " (You)"));
-      text.classList.add(
-        "chat-clients-toolbar-clients-list-username-text-mine"
-      );
+      listItemText.appendChild(document.createTextNode(chatter._nickname + " (You)"));
+      listItemText.classList.add("chat-clients-toolbar-clients-list-username-text-mine");
     } else {
-      text.appendChild(document.createTextNode(chatter._nickname));
+      listItemText.appendChild(document.createTextNode(chatter._nickname));
     }
-    listItem.appendChild(text);
+    listItem.appendChild(listItemText);
 
     component.appendChild(listItem);
   }
@@ -68,9 +59,7 @@ function generateChatClientsListHTMLComponent(chatters) {
 
 messageInputForm.addEventListener("submit", function (e) {
   e.preventDefault();
-
   let messageData = chatterClient.generateMessageData(messageInputField.value);
-
   if (messageData.text != "") {
     socket.emit(ServerEmissions.CHAT_MESSAGE, messageData);
     messageInputField.value = "";
