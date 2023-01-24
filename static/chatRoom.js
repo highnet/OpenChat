@@ -8,7 +8,6 @@ const ServerEmissions = {
 };
 
 let socket = io();
-
 let chatterClient = "";
 
 function generateChatMessageHTMLComponent(messageData) {
@@ -27,7 +26,6 @@ function generateChatMessageHTMLComponent(messageData) {
   let div = document.createElement("div");
   div.innerHTML = component;
   div.classList.add("chat-element");
-
   return div;
 }
 
@@ -43,15 +41,11 @@ function generateChatClientsListHTMLComponent(chatters) {
   for (let chatter of chatters._users) {
     let listItem = document.createElement("li");
     let listItemText = document.createElement("div");
-
     if (chatterClient.isSameChatter(chatter._uuid)) {
       listItemText.classList.add("chat-clients-toolbar-clients-list-username-text-mine");
     }
-
     listItemText.appendChild(document.createTextNode(chatter._nickname));
-
     listItem.appendChild(listItemText);
-
     component.appendChild(listItem);
   }
   return component;
