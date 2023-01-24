@@ -34,16 +34,16 @@ export class Chatter {
   }
 
   generateMessageData(text) {
-    const messageData = new MessageData(
-      messageInputField.value,
-      this._uuid,
-      this._nickname
-    );
+    const messageData = new MessageData(messageInputField.value, this._uuid, this._nickname);
     this._messages.push(messageData);
     return messageData;
   }
 
   messageBelongsToClient(messageData) {
-    return messageData.uuid == this.uuid;
+    return messageData.uuid == this._uuid;
+  }
+
+  isSameChatter(uuid) {
+    return uuid == this._uuid;
   }
 }

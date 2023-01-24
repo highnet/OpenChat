@@ -17,7 +17,7 @@ function generateChatMessageHTMLComponent(messageData) {
     <div class="container chat-message ${messageBelongsToClient ? "chat-message-mine" : "chat-message-other"}">
         <span class="container chat-message-chat-bubble"></span>
         <p class="container chat-message-chat-nickname ${messageBelongsToClient ? "chat-message-chat-nickname-mine" : "chat-message-chat-nickname-other"}">
-            ${messageData.nickname + ":"} 
+            ${messageData.nickname} 
         </p>
         <p class="container chat-message-chat-text">
             ${messageData.text}
@@ -44,12 +44,12 @@ function generateChatClientsListHTMLComponent(chatters) {
     let listItem = document.createElement("li");
     let listItemText = document.createElement("div");
 
-    if (chatter._uuid == chatterClient.uuid) {
-      listItemText.appendChild(document.createTextNode(chatter._nickname + " (You)"));
+    if (chatterClient.isSameChatter(chatter._uuid)) {
       listItemText.classList.add("chat-clients-toolbar-clients-list-username-text-mine");
-    } else {
-      listItemText.appendChild(document.createTextNode(chatter._nickname));
     }
+
+    listItemText.appendChild(document.createTextNode(chatter._nickname));
+
     listItem.appendChild(listItemText);
 
     component.appendChild(listItem);
