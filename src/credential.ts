@@ -7,19 +7,19 @@ export class Credential {
     this._password = password;
   }
 
-  public get Username(): string {
+  public get username(): string {
     return this._username;
   }
 
-  public set Username(value: string) {
+  public set username(value: string) {
     this._username = value;
   }
 
-  public get Password(): string {
+  public get password(): string {
     return this._password;
   }
 
-  public set Password(value: string) {
+  public set password(value: string) {
     this._password = value;
   }
 }

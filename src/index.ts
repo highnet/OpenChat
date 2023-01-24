@@ -128,8 +128,8 @@ io.on(ServerEvents.CONNECTION, (socket) => {
   */
   socket.emit(
     ServerEmissions.YOU_LOGGED_IN,
-    connectedUser.Uuid,
-    connectedUser.Nickname,
+    connectedUser.uuid,
+    connectedUser.nickname,
     connectedUsers
   );
 

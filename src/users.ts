@@ -8,11 +8,11 @@ export class Users {
     this._users = [];
   }
 
-  public get Users(): Array<User> {
+  public get users(): Array<User> {
     return this._users;
   }
 
-  public set Users(value: Array<User>) {
+  public set users(value: Array<User>) {
     this._users = value;
   }
 

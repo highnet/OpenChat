@@ -24,19 +24,19 @@ export class User {
     return result;
   }
 
-  public get Uuid(): string {
+  public get uuid(): string {
     return this._uuid;
   }
 
-  public set Uuid(value: string) {
+  public set uuid(value: string) {
     this._uuid = value;
   }
 
-  public get Nickname(): string {
+  public get nickname(): string {
     return this._nickname;
   }
 
-  public set Nickname(value: string) {
+  public set nickname(value: string) {
     this._nickname = value;
   }
 }

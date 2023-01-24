@@ -8,11 +8,11 @@ export class CredentialValidator {
     credential: Credential
   ): boolean {
     let result: boolean = false;
-    console.log(credential.Username, credential.Password);
+    console.log(credential.username, credential.password);
     for (let user of validLogins) {
       if (
-        credential.Username == user.username &&
-        credential.Password == user.password
+        credential.username == user.username &&
+        credential.password == user.password
       ) {
         result = true;
         break;
