@@ -2,30 +2,30 @@ import { v4 as uuidv4 } from "uuid";
 import { User } from "./user";
 
 export class Users {
-  private _Users: Array<User>;
+  private _users: Array<User>;
 
   constructor() {
-    this._Users = [];
+    this._users = [];
   }
 
   public get Users(): Array<User> {
-    return this._Users;
+    return this._users;
   }
 
   public set Users(value: Array<User>) {
-    this._Users = value;
+    this._users = value;
   }
 
   public GenerateNewUser(): User {
     let newUser = new User();
-    this._Users.push(newUser);
+    this._users.push(newUser);
     return newUser;
   }
 
   public RemoveOldUser(user: User): void {
-    let index = this._Users.indexOf(user);
+    let index = this._users.indexOf(user);
     if (index !== -1) {
-      this._Users.splice(index, 1);
+      this._users.splice(index, 1);
     }
   }
 }

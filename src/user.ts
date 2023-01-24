@@ -2,12 +2,12 @@ import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 
 export class User {
-  private _Uuid: string;
-  private _Nickname: string;
+  private _uuid: string;
+  private _nickname: string;
 
   constructor() {
-    this._Uuid = uuidv4();
-    this._Nickname = this.generateRandomNickname();
+    this._uuid = uuidv4();
+    this._nickname = this.generateRandomNickname();
   }
 
   private generateRandomNickname(): string {
@@ -25,18 +25,18 @@ export class User {
   }
 
   public get Uuid(): string {
-    return this._Uuid;
+    return this._uuid;
   }
 
   public set Uuid(value: string) {
-    this._Uuid = value;
+    this._uuid = value;
   }
 
   public get Nickname(): string {
-    return this._Nickname;
+    return this._nickname;
   }
 
   public set Nickname(value: string) {
-    this._Nickname = value;
+    this._nickname = value;
   }
 }

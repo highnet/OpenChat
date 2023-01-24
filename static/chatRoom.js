@@ -43,17 +43,17 @@ function appendToNewChatClientsListHTMLComponentsFromClientsList(chatters) {
     chatClientsList.removeChild(chatClientsList.firstChild);
   }
 
-  for (let chatter of chatters._Users) {
+  for (let chatter of chatters._users) {
     let listItem = document.createElement("li");
     let text = document.createElement("div");
 
-    if (chatter._Uuid == chatterClient.uuid) {
-      text.appendChild(document.createTextNode(chatter._Nickname + " (You)"));
+    if (chatter._uuid == chatterClient.uuid) {
+      text.appendChild(document.createTextNode(chatter._nickname + " (You)"));
       text.classList.add(
         "chat-clients-toolbar-clients-list-username-text-mine"
       );
     } else {
-      text.appendChild(document.createTextNode(chatter._Nickname));
+      text.appendChild(document.createTextNode(chatter._nickname));
     }
     listItem.appendChild(text);
 
