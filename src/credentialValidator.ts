@@ -1,9 +1,8 @@
 import { Credential } from "./credential";
 
 /*
-  The server side CredentialValidator class represents a
-  validator of Credential objects.
-  Upon a receiving a Credential object to validate, 
+  Upon a receiving a Credential object to validate, the validator
+  validates wether the Credential is valid or not.
 */
 
 export class CredentialValidator {
