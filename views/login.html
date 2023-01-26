@@ -7,10 +7,8 @@
     <title>Test Project Alpha Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <link rel="stylesheet" href="/static/normalize.css" />
     <link rel="stylesheet" href="/static/styles.css" />
     <script>
@@ -22,11 +20,7 @@
   </head>
   <body>
     <div class="banner">
-      <img
-        class="underconstruction"
-        src="../static/underconstruction.svg"
-        alt=""
-      />
+      <img class="underconstruction" src="../static/underconstruction.svg" alt="" />
     </div>
 
     <div class="navbar container grid">
@@ -47,10 +41,13 @@
         <input class="btn btn-elegant btn-small" type="submit" value="Log In" />
       </form>
     </div>
-    <h1>Lorem, ipsum.</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nesciunt
-      quos nam, repudiandae delectus vero voluptas illum repellat quae facilis.
-    </p>
+
+    <div class="boxes">
+      <div class="box green"></div>
+      <div class="box purple"></div>
+      <div class="box orange"></div>
+    </div>
+
+    <script type="module" src="../static/helloGreensock.js"></script>
   </body>
 </html>

@@ -3,11 +3,9 @@
 :root {
   --color-primary: rgba(131, 58, 180, 1);
   --color-accent: rgba(252, 176, 69, 1);
+  --color-highlight: rgb(253, 29, 29);
   --color-headings: white;
   --color-paragraphs: rgb(255, 255, 255);
-  --color-gradient-start: #833ab4;
-  --color-gradient-middle: #fd1d1d;
-  --color-gradient-end: #fcb045;
 }
 
 /* Typography */
@@ -19,7 +17,7 @@ html {
 
 body {
   font-family: Inter, Arial, Arial, Helvetica, sans-serif;
-  background: linear-gradient(90.01deg, var(--color-gradient-start) 0%, var(--color-gradient-middle) 50%, var(--color-gradient-end) 100%);
+  background: linear-gradient(90.01deg, var(--color-primary) 0%, var(--color-highlight) 50%, var(--color-accent) 100%);
   height: 100%;
 }
 
@@ -379,4 +377,34 @@ input {
   margin-right: 5px;
   text-indent: 5px;
   border-bottom-left-radius: 2px;
+}
+
+/* Greensock */
+
+.boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+  overflow: hidden;
+}
+
+.box {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.green {
+  background-color: green;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.orange {
+  background-color: orange;
 }
