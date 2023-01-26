@@ -114,32 +114,16 @@ io.on(ServerEvents.CONNECTION, (socket) => {
   // Generate a new server side user
   let connectedUser = connectedUsers.GenerateNewUser();
 
-  /*
-   Emit a YOU_LOGGED_IN ServerEmisssion to the user, including their newly
-   assigned uuid, nickname, and a list of all other connected users
-  */
   socket.emit(ServerEmissions.YOU_LOGGED_IN, connectedUser.uuid, connectedUser.nickname, connectedUsers);
 
-  /*
-    Broadcast emit a A_CLIENT_LOGGED_IN ServerEmission to all users,
-    including a list of all other currently connected users
-  */
   socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_IN, connectedUsers);
 
   socket.on(ServerEvents.DISCONNECT, () => {
     connectedUsers.RemoveOldUser(connectedUser); // Remove the user from the list of connected users
-    /*
-      Broadcast a A_CLIENT_LOGGED_OUT ServerEmission to all users,
-      including a list of all other currently connected users
-    */
     socket.broadcast.emit(ServerEmissions.A_CLIENT_LOGGED_OUT, connectedUsers);
   });
 
   socket.on(ServerEmissions.CHAT_MESSAGE, (msg) => {
-    /*
-      Emit a CHAT_MESSAGE server emission to all users,
-      including the message itself
-    */
     io.emit(ServerEmissions.CHAT_MESSAGE, msg);
     console.log(msg);
   });
