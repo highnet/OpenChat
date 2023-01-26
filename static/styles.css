@@ -277,6 +277,7 @@ input {
   word-break: break-word;
   direction: ltr;
   font-size: 1.4rem;
+  overflow: hidden;
 }
 
 .chat-message-chat-bubble {
