@@ -66,7 +66,7 @@ input {
   padding: 1rem 1rem;
 }
 
-/* Buttons */
+/* Button */
 
 .btn {
   justify-self: center;
@@ -160,6 +160,16 @@ input {
 
 /* Chatting */
 
+.chat-house {
+  max-width: 720px;
+  display: flex;
+  background-image: url(/static/chatbackground_2.svg);
+  background-size: cover;
+  border: 1px solid lightblue;
+  overflow: clip;
+  justify-content: left;
+}
+
 .chat-room {
   position: relative;
   height: 64vh;
@@ -170,6 +180,8 @@ input {
   min-width: 250px;
   max-width: 600px;
 }
+
+/* Chat Messages */
 
 .chat-messages {
   position: absolute;
@@ -182,6 +194,14 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+/* Chat Message */
+
+.chat-element {
+  display: flex;
+  overflow: clip;
+  max-height: 200px;
 }
 
 .chat-message {
@@ -254,12 +274,6 @@ input {
   border-bottom-right-radius: 2px;
 }
 
-.chat-element {
-  display: flex;
-  overflow: clip;
-  max-height: 200px;
-}
-
 .chat-message-chat-nickname {
   margin-left: 1rem;
   font-size: 1.3rem;
@@ -295,6 +309,52 @@ input {
   border: 2px solid greenyellow;
 }
 
+/* Chat Clients Toolbar */
+
+.chat-clients-toolbar {
+  margin: 0px 0px;
+  max-width: 200px;
+  min-width: 150px;
+  height: 64vh;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-height: 100%;
+  border: 1px solid lightblue;
+  background: url(/static/chatbackgroundusers_0.svg);
+}
+
+.chat-clients-toolbar-clients-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.chat-clients-toolbar-clients-list > li {
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 1.3rem;
+}
+
+.chat-clients-toolbar-clients-list > li:nth-child(even) {
+  background: rgba(253, 29, 29, 0.1);
+}
+
+.chat-clients-toolbar-clients-list > li:nth-child(odd) {
+  background: rgba(252, 176, 69, 0.1);
+}
+
+.chat-clients-toolbar-clients-list-nickname-background-mine {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+
+.chat-clients-toolbar-clients-list-username-text-mine {
+  font-weight: bold;
+}
+
+/* Chat Input Toolbar */
+
 .chat-input-toolbar {
   width: 500px;
   height: 10vh;
@@ -319,56 +379,4 @@ input {
   margin-right: 5px;
   text-indent: 5px;
   border-bottom-left-radius: 2px;
-}
-
-.chat-clients-toolbar {
-  margin: 0px 0px;
-  max-width: 200px;
-  min-width: 150px;
-  height: 64vh;
-  overflow: scroll;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  max-height: 100%;
-  border: 1px solid lightblue;
-  background: url(/static/chatbackgroundusers_0.svg);
-}
-
-.chat-clients-toolbar-clients-list {
-  list-style-type: none;
-  padding-left: 0;
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
-
-.chat-house {
-  max-width: 720px;
-  display: flex;
-  background-image: url(/static/chatbackground_2.svg);
-  background-size: cover;
-  border: 1px solid lightblue;
-  overflow: clip;
-  justify-content: left;
-}
-
-.chat-clients-toolbar-clients-list > li {
-  text-align: center;
-  color: var(--color-accent);
-  font-size: 1.3rem;
-}
-
-.chat-clients-toolbar-clients-list > li:nth-child(even) {
-  background: rgba(253, 29, 29, 0.1);
-}
-
-.chat-clients-toolbar-clients-list > li:nth-child(odd) {
-  background: rgba(252, 176, 69, 0.1);
-}
-
-.chat-clients-toolbar-clients-list-nickname-background-mine {
-  background: rgba(0, 0, 0, 0.15) !important;
-}
-
-.chat-clients-toolbar-clients-list-username-text-mine {
-  font-weight: bold;
 }
