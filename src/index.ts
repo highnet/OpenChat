@@ -15,11 +15,6 @@ import { Credential } from "./credential";
 
 //#region Enums
 
-/*
-  ServerEmissions describes the different types of
-  emissions that can be emited by the server to the client
-  the client has an equivalent definition of ServerEmissions
-*/
 enum ServerEmissions {
   YOU_LOGGED_IN = "you logged in",
   A_CLIENT_LOGGED_IN = "a client logged in",
@@ -100,10 +95,7 @@ app.post("/login", (req: Request, res: Response) => {
   let credential = new Credential(req.body.username, req.body.password);
 
   // Validate the user's credentials
-  let validCredentials = credentialValidator.ValidateCredentials(
-    validLogins,
-    credential
-  );
+  let validCredentials = credentialValidator.ValidateCredentials(validLogins, credential);
 
   // Redirect the user according to the credential validator results
   if (validCredentials) {
@@ -126,12 +118,7 @@ io.on(ServerEvents.CONNECTION, (socket) => {
    Emit a YOU_LOGGED_IN ServerEmisssion to the user, including their newly
    assigned uuid, nickname, and a list of all other connected users
   */
-  socket.emit(
-    ServerEmissions.YOU_LOGGED_IN,
-    connectedUser.uuid,
-    connectedUser.nickname,
-    connectedUsers
-  );
+  socket.emit(ServerEmissions.YOU_LOGGED_IN, connectedUser.uuid, connectedUser.nickname, connectedUsers);
 
   /*
     Broadcast emit a A_CLIENT_LOGGED_IN ServerEmission to all users,
