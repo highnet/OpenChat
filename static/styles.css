@@ -387,7 +387,6 @@ input {
   align-items: center;
   justify-content: space-around;
   margin: 0;
-  overflow: hidden;
 }
 
 .decoration-box {
