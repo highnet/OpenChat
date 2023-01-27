@@ -385,26 +385,39 @@ input {
 .decoration-boxes {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin: 0;
+  justify-content: space-evenly;
+  margin: 0 10rem 0 10rem;
 }
 
 .decoration-box {
   width: 50px;
+  min-width: 50px;
   height: 50px;
+  min-height: 50px;
   position: relative;
   border-radius: 6px;
-  margin-bottom: 4px;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 
-.decoration-box-green {
-  background-color: green;
+.decoration-box-1 {
+  background-color: rgba(131, 58, 180);
 }
 
-.decoration-box-purple {
-  background-color: purple;
+.decoration-box-2 {
+  background-color: rgba(171, 51, 169);
 }
 
-.decoration-box-orange {
-  background-color: orange;
+.decoration-box-3 {
+  background-color: rgba(228, 57, 140);
+}
+
+.decoration-box-4 {
+  background-color: rgba(252, 86, 111);
+}
+.decoration-box-5 {
+  background-color: rgba(255, 151, 76);
+}
+.decoration-box-6 {
+  background-color: rgba(252, 176, 69);
 }
