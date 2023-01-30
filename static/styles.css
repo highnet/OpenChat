@@ -386,18 +386,54 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin: 0 10rem 0 10rem;
+  margin: 5rem 0rem 0rem 0rem;
 }
 
 .decoration-box {
-  width: 50px;
-  min-width: 50px;
-  height: 50px;
-  min-height: 50px;
   position: relative;
   border-radius: 6px;
   margin-right: 3px;
   margin-left: 3px;
+}
+
+.decoration-box-xxlarge {
+  width: 65px;
+  height: 65px;
+}
+
+.decoration-box-xlarge {
+  width: 60px;
+  height: 60px;
+}
+
+.decoration-box-large {
+  width: 55px;
+  height: 55px;
+}
+
+.decoration-box-medium {
+  width: 50px;
+  height: 50px;
+}
+
+.decoration-box-small {
+  width: 45px;
+  height: 45px;
+}
+
+.decoration-box-xsmall {
+  width: 40px;
+  height: 40px;
+}
+
+.decoration-box-xxsmall {
+  width: 35px;
+  height: 35px;
+}
+
+.decoration-box-xxxsmall {
+  width: 30px;
+  height: 30px;
 }
 
 .decoration-box-1 {
@@ -405,19 +441,61 @@ input {
 }
 
 .decoration-box-2 {
-  background-color: rgba(171, 51, 169);
+  background-color: rgba(152, 55, 176);
 }
 
 .decoration-box-3 {
-  background-color: rgba(228, 57, 140);
+  background-color: rgba(171, 51, 169);
 }
 
 .decoration-box-4 {
+  background-color: rgba(188, 49, 162);
+}
+
+.decoration-box-5 {
+  background-color: rgba(204, 49, 155);
+}
+
+.decoration-box-6 {
+  background-color: rgba(217, 52, 148);
+}
+
+.decoration-box-7 {
+  background-color: rgba(228, 57, 140);
+}
+
+.decoration-box-8 {
+  background-color: rgba(238, 65, 131);
+}
+
+.decoration-box-9 {
+  background-color: rgba(246, 75, 121);
+}
+
+.decoration-box-10 {
   background-color: rgba(252, 86, 111);
 }
-.decoration-box-5 {
+
+.decoration-box-11 {
+  background-color: rgba(255, 98, 103);
+}
+
+.decoration-box-12 {
+  background-color: rgba(255, 112, 96);
+}
+
+.decoration-box-13 {
+  background-color: rgba(255, 124, 88);
+}
+
+.decoration-box-14 {
+  background-color: rgba(255, 137, 82);
+}
+
+.decoration-box-15 {
   background-color: rgba(255, 151, 76);
 }
-.decoration-box-6 {
-  background-color: rgba(252, 176, 69);
+
+.decoration-box-16 {
+  background-color: rgba(255, 163, 71);
 }
